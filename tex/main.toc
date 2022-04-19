@@ -1,0 +1,267 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Preface}{vii}{chapter*.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{I\hspace {1em}Programming}{1}{part.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Input, Processing, and Output}{3}{chapter.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.1}The Hello World Program}{3}{section.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.2}Variables}{3}{section.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.3}Comments}{4}{section.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.4}Data Types and Conversion}{5}{section.1.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.5}Input}{5}{section.1.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.6}Calculations}{5}{section.1.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}If, Elif, Else}{7}{chapter.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}If Statements}{7}{section.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}If Elif Else Statements}{7}{section.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Logical Operators}{8}{section.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.4}Boolean Variables}{9}{section.2.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Lists}{11}{chapter.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Defining Lists}{11}{section.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.1}Indexing, Slicing, Mutating}{11}{subsection.3.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Repetition Structures}{15}{chapter.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}While Loops}{15}{section.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}For Loops}{16}{section.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.1}Nested Loops}{17}{subsection.4.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}Functions}{19}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.1}Detour: Callables and Functions}{19}{section.5.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.2}Function Basics}{19}{section.5.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2.1}Naming}{20}{subsection.5.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.3}Arguments and Parameters}{20}{section.5.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.3.1}A mutability gotcha}{21}{subsection.5.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.4}Annotation and Documentation}{21}{section.5.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.5}Local and Global Variables and Namespaces}{22}{section.5.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.6}Anonymous Functions}{22}{section.5.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.7}Higher-Order Functions Like \texttt {map}}{23}{section.5.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.8}Examples}{23}{section.5.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.8.1}Exercise!}{23}{subsection.5.8.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Exceptions}{25}{chapter.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.1}Exceptions}{25}{section.6.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {7}More Data Structures}{29}{chapter.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.1}Tuples}{29}{section.7.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.1.1}Tuple Assignment}{29}{subsection.7.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.1.2}Unpacking}{30}{subsection.7.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.1.3}Tuples vs. Lists}{30}{subsection.7.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.2}The \lstinline [language = Python]{in} Operator}{30}{section.7.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.3}List Methods}{31}{section.7.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.4}Strings}{32}{section.7.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.5}Dictionaries}{33}{section.7.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.6}Sets}{34}{section.7.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {8}Modules}{35}{chapter.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.0.1}Storing Functions in Modules}{35}{subsection.8.0.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.0.2}Using the \texttt {random} module and \texttt {matplotlib}}{36}{subsection.8.0.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {9}Object Oriented Programming}{37}{chapter.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9.1}Object Oriented Programming}{37}{section.9.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.1.1}Classes}{37}{subsection.9.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9.2}Inheritance}{39}{section.9.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.2.1}Polymorphism (G\S 11.2)}{39}{subsection.9.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {10}IPython}{41}{chapter.10}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.1}IPython and Jupyter}{41}{section.10.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.1.1}IPython Basics}{41}{subsection.10.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.1.2}Extensions}{41}{subsection.10.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.1.3}Peak Under the Hood: Grading}{41}{subsection.10.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{II\hspace {1em}Data}{43}{part.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {11}NumPy}{45}{chapter.11}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {11.1}The Array}{45}{section.11.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {11.2}Indexing}{45}{section.11.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Boolean Indexing}{46}{section*.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.2.1}Functions}{46}{subsection.11.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.2.2}Linear Algebra}{46}{subsection.11.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Regression Exercise}{47}{section*.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {12}Pandas: Series and DataFrames}{49}{chapter.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {12.1}Series}{49}{section.12.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {12.1.1}Series Functionality I}{50}{subsection.12.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Apply}{50}{section*.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Anonymous Functions}{51}{section*.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Accessor Methods}{51}{section*.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {12.2}DataFrames}{51}{section.12.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {12.2.1}Indexing}{52}{subsection.12.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {12.3}Summarizing and Computing Descriptive Stats}{52}{section.12.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {12.4}Applications}{52}{section.12.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {12.4.1}Interview Question}{52}{subsection.12.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {13}Pandas: Join, Merge, and Other Manipulation}{55}{chapter.13}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {13.1}Application: Primitive Pandas}{55}{section.13.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {13.2}The Basic Join}{55}{section.13.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {13.3}Data Aggregation and Group Operations}{56}{section.13.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {13.3.1}GroupBy}{56}{subsection.13.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{DataFrame Group By Object}{56}{section*.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Series Group By Object}{56}{section*.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Group By With Multiple Columns}{56}{section*.10}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {13.4}Concat and Append}{57}{section.13.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {13.4.1}Application: What precedes sleeplessness?}{58}{subsection.13.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {13.5}Merge}{58}{section.13.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {13.6}Pivot Tables}{59}{section.13.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\lstinline [language = Python]{pivot_table()}}{60}{section*.11}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\lstinline [language = Python]{pivot()}}{60}{section*.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {13.6.1}Crosstabs}{60}{subsection.13.6.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {14}Data Visualization}{61}{chapter.14}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {14.1}MATLAB Interface}{61}{section.14.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {14.1.1}Saving Figures}{62}{subsection.14.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {14.1.2}Special Plots: Scatter, Histogram, and Bar Plots}{62}{subsection.14.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {14.1.3}Customizations}{62}{subsection.14.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {14.1.4}Pandas Integration}{62}{subsection.14.1.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {14.2}Object-oriented Interface}{63}{section.14.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {14.2.1}Introduction to the OO Interface}{63}{subsection.14.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Figure, Axes}{64}{section*.13}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Mixing the Interfaces}{65}{section*.14}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {14.2.2}Subplots with \lstinline [language = Python]{plt.subplots()}}{67}{subsection.14.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {15}Time and Dates}{69}{chapter.15}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {15.1}Using the \texttt {datetime} module}{69}{section.15.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {15.1.1}Dates and Datetimes}{69}{subsection.15.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {15.1.2}Unix Timestamps}{69}{subsection.15.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {15.1.3}Time Deltas and Relative Deltas}{70}{subsection.15.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {15.1.4}Date Strings}{70}{subsection.15.1.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Dateutil}{71}{section*.15}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {15.1.5}Pandas and Numpy}{71}{subsection.15.1.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {15.2}Analysis}{71}{section.15.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {15.2.1}Application 1}{72}{subsection.15.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {15.2.2}Application 2}{72}{subsection.15.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Method 1}{72}{section*.16}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {16}Python for Excel}{73}{chapter.16}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {16.1}Pandas}{73}{section.16.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {16.1.1}Reading}{73}{subsection.16.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {16.1.2}Writing}{74}{subsection.16.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {16.2}OpenPyXL}{74}{section.16.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Installation:}{74}{section*.17}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {16.2.1}Reading}{74}{subsection.16.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {16.2.2}Writing}{75}{subsection.16.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {16.2.3}Styles}{76}{subsection.16.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Conditional Formatting and Filtering}{79}{section*.18}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {16.2.4}Inserting Charts}{80}{subsection.16.2.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {17}Applications}{83}{chapter.17}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {17.1}Inference and Experiments}{83}{section.17.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {17.1.1}Motivation/Soapbox}{83}{subsection.17.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {17.1.2}Experiments}{85}{subsection.17.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{$t$-tests}{85}{section*.19}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Lady Tasting Tea}{85}{section*.20}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Randomization Inference}{85}{section*.21}

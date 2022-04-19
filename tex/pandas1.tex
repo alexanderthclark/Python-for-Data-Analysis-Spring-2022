@@ -1,0 +1,330 @@
+Pandas was created by Wes McKinney. If you'll work with data in Python, get used to having this at the top of your code.
+\begin{lstlisting}[language = Python]
+import pandas as pd
+\end{lstlisting}
+
+\section{Series}
+
+A Pandas \emph{series} is like an array. Unlike lists or numpy arrays, a series has an \emph{index}. If you create a series from scratch, the default index will be numbered from zero. You can also explicitly pass an index. These are constructed much like a numpy array, but with \code{pd.Series()}. You can also pass a dictionary to create a series, where the keys are the index values. You can go back to a NumPy array with the method or \code{.to_numpy()} by accessing the values attribute, \code{.values}.
+
+\begin{lstlisting}[language = Python]
+ser1 = pd.Series([10,10,2,20])
+ser2 = pd.Series(['squirrel', 100], index = ['animal', 'number'])
+
+dictionary_helper = {'Today': 60, 'Tomorrow': 50, 'Monday': 55}
+ser3 = pd.Series(dictionary_helper)
+
+
+print(ser1)
+print(ser2)
+print(ser3)
+
+# Compare to Numpy
+import numpy as np
+print(np.array(ser1)) # no more index
+print(np.array(ser2))
+
+# Compare ser3 to its dictionary
+print("Today" in dictionary_helper)
+print("Today" in ser3)
+
+print(60 in dictionary_helper)
+print(60 in ser3)
+\end{lstlisting}
+
+We can access the series index and values similarly as we'd access a dictionary's keys and values. 
+
+\begin{lstlisting}[language = Python]
+print(ser3.index)
+print(ser3.values)
+\end{lstlisting}
+
+\smallskip
+\noindent Mathematical operations are automatically aligned based on the series index. 
+
+\begin{lstlisting}[language = Python]
+wealth = {'Alice': 65, 'Bob': 50}
+wealth_series = pd.Series(wealth)
+
+bonus = {"Bob": 10, "Alice": 10}
+bonus_series = pd.Series(bonus)
+
+print(wealth_series + bonus_series)
+
+# convert to numpy and add
+print( np.array(wealth_series) + np.array(bonus_series) )
+\end{lstlisting}
+
+\smallskip
+\noindent Null values can arise in a series. An index might be explicitly specified and without any corresponding value, or an operation might not be possible for a particular index. 
+
+\begin{lstlisting}[language = Python]
+wealth = {'Alice': 65, 'Bob': 50}
+wealth_series = pd.Series(wealth, index = ['Larry', 'Alice', 'Debbie', 'Bob'])
+
+bonus = {"Bob": 10, "Alice": 10}
+bonus_series = pd.Series(bonus)
+
+new_wealth = wealth_series + bonus_series
+print(new_wealth)
+\end{lstlisting}
+
+\smallskip
+\noindent There are a few methods to help with nulls. The methods \code{isnull()} and \code{notnull()} return booleans as the names would suggest.
+
+\begin{lstlisting}[language = Python]
+print(new_wealth.isnull())
+print(new_wealth.notnull())
+
+print(new_wealth.isnull() | new_wealth.notnull()) # guess what this will be
+\end{lstlisting}
+
+\smallskip
+You can access the 
+
+
+
+\subsection{Series Functionality I}
+
+Like with NumPy arrays, you can add two series, multiply two series, etc. You can also add, multiply, etc by a constant. 
+
+\begin{lstlisting}[language = Python]
+a = bonus_series + 1
+b = bonus_series + bonus_series
+c = bonus_series * 2 * bonus_series
+\end{lstlisting}
+
+You can also apply NumPy functions that will operate element-wise. 
+
+\begin{lstlisting}[language = Python]
+a = np.sqrt(bonus_series)
+b = np.exp(bonus_series)
+c = np.log(b)
+\end{lstlisting}
+
+\subsubsection{Apply}
+
+Some functions don't automatically apply to sequences element-wise, but you might want them to. The \code{apply()} method is made for these cases. Pass a function to \code{apply} and it will be applied at every index in the series.
+
+\begin{lstlisting}[language = Python]
+def odd_or_even(x):
+    if x % 2 == 0:
+        return "Even"
+    return "Odd"
+    
+ser = pd.Series(range(1,9))
+
+# This gives an error
+odd_or_even(ser)
+
+# Use apply
+ser.apply(odd_or_even)
+\end{lstlisting}
+
+\textbf{Anonymous functions} are especially useful with the \code{apply} method.
+
+\subsubsection{Anonymous Functions}
+Anonymous, or lambda, functions are defined without the \code{def} keyword. They are nameless and can come in handy when needed for a short period. They are often used inside other functions. The follow a syntax like \texttt{lambda [argument]: [expression to return]}.
+
+\begin{lstlisting}[language = Python]
+example = lambda x: x+1
+print(example(-1))
+\end{lstlisting}
+
+\begin{lstlisting}[language = Python]
+ser.apply(lambda x: '2' in str(x))
+\end{lstlisting}
+
+\subsubsection{Accessor Methods}
+Better than using \code{apply()} might be using accessor methods. 
+
+The string accessor method works by including \code{.str} after a Series and then a string method. 
+
+\begin{lstlisting}
+df.string_column.str.lower()
+
+# better than
+#df.string_column.apply(lambda x: x.lower())
+\end{lstlisting}
+
+%%%%% DATAFRAMES
+\section{DataFrames}
+
+You can imagine a series with multiple columns. That would be a dataframe, \code{pd.DataFrame}. Below are a few constructions.
+
+\begin{lstlisting}[language = Python]
+# construct some DataFrames()
+a = pd.DataFrame() # empty
+b = pd.DataFrame(ser)
+c = pd.DataFrame(ser, ser) # less common
+d = pd.DataFrame([ser,ser]) # less common
+\end{lstlisting}
+
+
+DataFrames are also commonly constructed with a dictionary. 
+
+\begin{lstlisting}[language = Python]
+data = {'State' : ['KY', 'NY'], 
+        'Capital' : ['Frankfort', 'Albany']}
+df = pd.DataFrame(data)
+\end{lstlisting}
+
+You can also read a CSV with \code{pd.read_csv()}. 
+\begin{lstlisting}[language = Python]
+atus_df = pd.read_csv("ATUS_activity_2019.csv")
+\end{lstlisting}
+
+
+
+The \code{head()} and \code{tail()} methods to display the first or last rows. By default, five rows will be selected. 
+
+\smallskip
+\noindent A specific column can be accessed with dict-like notation or by attribute. As shown in \cite{antao2022},  dictionary access can be faster.
+
+\begin{lstlisting}
+df['State']
+df.State
+\end{lstlisting}
+
+Similarly, a new column can be created with the same dict-like notation. 
+
+\begin{lstlisting}[language = Python]
+df['Extra Column'] = None
+\end{lstlisting}
+
+
+\smallskip
+\noindent Rows and columns can be dropped with the \code{drop()} method. Columns can also be deleted with \code{del}.
+
+\begin{lstlisting}[language = Python]
+df['Extra Column'] = None
+print(df.columns)
+
+del df['Extra Column']
+print(df.columns)
+
+df['Extra Column'] = None
+df.drop('Extra Column', axis = 'columns', inplace = True)
+
+# axis = 1 also references columns
+df['Extra Column'] = None
+df.drop('Extra Column', axis = 1, inplace = True)
+\end{lstlisting}
+
+
+
+\subsection{Indexing}
+
+You can specify an existing column as the index with \code{set_index()}. You can also explicitly change the index by accessing the index attribute. You can reset the index with \code{reset_index()}.
+
+\begin{lstlisting}[language = Python]
+print(df.index)
+
+df.index = [1,'clown']
+
+df.set_index("State") # returns a new dataframe
+df.set_index("State", inplace = True) # alters df
+
+# go back to numbered index
+df.reset_index(inplace = True)
+\end{lstlisting}
+
+
+A DataFrame can be index with either \code{loc} or \code{iloc}. Use \code{loc} to index by the exact index and column names. Use \code{iloc} to index by the index and column numbers. An index can contain duplicates, which can complicate the below. 
+
+\begin{lstlisting}[language = Python]
+# return to State index
+df.set_index('State', inplace = True)
+
+a = df.loc['KY', 'Capital]
+b = df.iloc[0, 0]
+
+print(a,b)
+\end{lstlisting}
+
+As you could select an entire column with \code{df['Capital']}, you can select an entire row with \code{df.loc['KY']} or \code{atus_df.loc[0]}. Or you can select a subset by passing a list or slicing 
+
+\begin{lstlisting}[language = Python]
+sub_df1 = atus_df.loc[[0,10,29]]
+sub_df2 = atus_df.loc[0:2]
+\end{lstlisting}
+
+
+\section{Summarizing and Computing Descriptive Stats}
+
+Let's return to \code{atus_df}. Let's examine sleep averages and find the person who slept for the longest. 
+
+First we can mask to just select the rows where the activity is sleeping. 
+
+
+\begin{lstlisting}[language = Python]
+is_sleeping = atus_df.activity_name == 'Sleeping'
+sleep_df = atus_df[is_sleeping]
+
+avg_sleep = sleep_df.TUACTDUR.mean()
+
+# even more info 
+summary_stats = sleep_df.TUACTDUR.describe()
+
+# idxmax gives index with max value
+max_row = sleep_df.TUACTDUR.idxmax()
+
+# compare 
+sleep_df.loc[max_row]
+atus_df.loc[max_row]
+\end{lstlisting}
+
+
+
+\begin{lstlisting}[language = Python]
+a = atus_data.activity_name.value_counts()
+b = atus_data.activity_name.value_counts(normalize = True)
+\end{lstlisting}
+
+
+\section{Applications}
+
+\subsection{Interview Question}
+
+Start with data like the first table and create the second table. 
+
+\begin{lstlisting}
+# create original table
+shares = pd.DataFrame(np.random.dirichlet([1,1,1], 
+        size = 100), 
+        columns = ['cycling', 'running', 'chess'])
+\end{lstlisting}
+\medskip
+
+\begin{tabular}{lrrr}
+\toprule
+{} &  cycling &  running &  chess \\
+\midrule
+0 &     0.55 &     0.32 &   0.13 \\
+1 &     0.47 &     0.03 &   0.50 \\
+2 &     0.31 &     0.43 &   0.26 \\
+\bottomrule
+\end{tabular}
+
+\medskip
+
+\begin{tabular}{lrrr}
+\toprule
+{} &  discipline1 &  discipline2 &  discipline3 \\
+\midrule
+0 &   0.55 &     0.32 &     0.13 \\
+1 &   0.50 &     0.47 &     0.03 \\
+2 &   0.43 &     0.31 &     0.26 \\
+\bottomrule
+\end{tabular}
+
+\medskip
+
+\noindent \textbf{Solution}: It's homework!
+
+This exercise highlights the difference between the structure of a DataFrame and a NumPy array. This task can be done most easily by converting the DataFrame to a NumPy array first. A more obvious solution involves looping through the DataFrame, row by row. Can you think of other ways to avoid loops? One route might use the fact that we have just three columns, so we are dealing with a minimum value, a maximum value, and then use the fact that the last value must add to the min and max to make one. 
+
+
+%\section{Stats Application: Pandas and NumPy}
+
+%Muriel Bristol once claimed to be able to tell whether tea or the milk was added first to a cup of tea. Her skeptical colleague, Ronald Fisher, devised a test. He gave her eight cups of tea, four of which with milk added first and four with tea added first. Bristol correctly identified each cup of tea. Fisher used an ``exact'' test to determine how often she might have done just that if she had no ability to distinguish. There would have been 70 ways to guess, so if the null hypothesis of no ability were true, we'd have seen this outcome with a probability $\frac{1}{70}$.

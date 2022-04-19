@@ -1,0 +1,189 @@
+\section{Object Oriented Programming}
+\scalebox{0.8}{\textit{Reference: \cite{lubanovic2019introducing} Chapter 10}}\medskip
+
+So far, our programming has been \emph{procedural}. A program was made of procedures and data might be passed from one procedure to the next. This creates a separation of data and the procedures/operations. As a program grows, this can become more unwieldy. We'll talk about defining classes. While you might get quite far without having to define your own classes, the vocabulary here is important for anyone who wants to be fluent in Python and understand popular libraries like Pandas. 
+
+\smallskip
+\noindent \emph{Object-oriented programming} (OOP) centers on creating objects instead of procedures. An object contains both data and procedures. An object's data are its \emph{data attributes}. An object's procedures are its \emph{methods}, which operate on the data attributes. Attributes are like variables and methods are like functions. Bundling data with the code operating on it is called \emph{encapsulation}. 
+\smallskip 
+
+\subsection{Classes}
+
+A \emph{class} is code that specifies the data attributes and methods for a particular type of object. A class is like a blueprint and the object is the particular realization. When we previously talked about data types, we were really referencing classes. Run \code{print(type('Hello, World!'))}. Your output should be \lstinline{<class 'str'>}.
+
+\smallskip
+\noindent
+Classes are defined in the following way. Note, per \link{https://www.python.org/dev/peps/pep-0008/\#class-names}{PEP 8}, class names should follow the CapWords convention. 
+
+\begin{lstlisting}[language = Python]
+import random 
+
+class Coin: 
+
+    def __init__(self):
+        self.sideup = "Heads"
+        self.coin = "Quarter"
+\end{lstlisting}
+
+\smallskip
+\noindent Run \code{coin = Coin()} and print \code{coin.sideup} and \code{coin.coin}.
+
+So a minimal class definition includes the \code{__init__} \emph{initializer method}. This initializes the objects data attributes. We could instead make these attributes arguments.
+
+
+\begin{lstlisting}[language = Python]
+import random 
+
+class Coin: 
+
+    def __init__(self, sideup = 'Heads', coin = 'Quarter'):
+        self.sideup = sideup
+        self.coin = coin
+\end{lstlisting}
+
+\smallskip
+\noindent Take care to note the last two lines in the block above are necessary to create the \code{sideup} and \code{coin} attributes. Now, let's add some methods to our class.
+
+\begin{lstlisting}[language = Python]
+import random 
+
+# Simulate a coin that can be tossed
+
+class Coin: 
+
+    def __init__(self, sideup = 'Heads', coin = 'Quarter'):
+        self.sideup = sideup
+        self.coin = coin
+
+    def toss(self):
+        toss_outcome = random.choice(['Heads','Tails'])
+        self.sideup = toss_outcome # Here we change the attribute instead of returning a value
+\end{lstlisting}
+
+See what happens now. 
+
+\begin{lstlisting}[language = Python]
+coin = Coin() # start with a coin that is heads up per class default value
+for i in range(100):
+    
+    print(coin.sideup)
+    coin.toss() # toss the coin
+\end{lstlisting}
+
+\smallskip
+\noindent Here we add a value-returning method. 
+
+\begin{lstlisting}[language = Python]
+import random 
+
+# Simulate a coin that can be tossed
+
+class Coin: 
+
+    def __init__(self, sideup = 'Heads', coin = 'Quarter'):
+        self.sideup = sideup
+        self.coin = coin
+
+    def toss(self):
+        toss_outcome = random.choice(['Heads','Tails']) # local variable just like before in defining functions
+        self.sideup = toss_outcome # Here we change the attribute instead of returning a value
+        
+    def get_sideup(self):
+        return self.sideup
+\end{lstlisting}
+
+Next, we might want to use \emph{hidden attributes}. Before we could externally change \code{sideup} attribute. Perhaps you don't want that to be possible in this or in another setting. Then you can make that attribute private by including two underscores with the init.
+
+\begin{lstlisting}[language = Python]
+import random 
+
+# Simulate a coin that can be tossed
+
+class Coin: 
+
+    def __init__(self, sideup = 'Heads', coin = 'Quarter'):
+        self.__sideup = sideup
+        self.coin = coin
+
+    def toss(self):
+        toss_outcome = random.choice(['Heads','Tails']) # local variable just like before in defining functions
+        self.__sideup = toss_outcome # Here we change the attribute instead of returning a value
+        
+    def get_sideup(self):
+        return self.__sideup # We need two underscores here too!
+\end{lstlisting}
+
+Now for \code{coin = Coin()}, you cannot access the \code{sideup} attribute with either \code{coin.sideup} or \code{coin.__sideup}. The \code{get_sideup()} method becomes necessary to access the private attribute. When making a data attribute private, one might create methods for accessing and changing those attributes. These are called accessor and mutator methods. Or you might call them getters and setters, respectively.
+
+
+\smallskip
+\noindent The \code{__str__} method is designed to indicate an object's emph{state} (the attribute values). 
+
+\begin{lstlisting}[language = Python]
+import random 
+
+class Coin: 
+
+    def __init__(self, sideup = 'Heads', coin = 'Quarter'):
+        self.sideup = sideup
+        self.coin = coin
+        
+    def __str__(self):
+        return "The coin is a " + self.coin + ", and it is " + self.sideup + "."
+\end{lstlisting}
+
+This method is accessed not directly, but by printing the object. 
+\section{Inheritance}
+
+
+\code{Inheritance} allows a new class to extend an existing class. This helps with code reusability a bit because we can have super and subclasses. 
+
+We might start with a superclass. Here's an example.
+
+\begin{lstlisting}[language = Python]
+class Automobile():
+
+    def __init__(self, gas_tank):
+        self.gas_tank = gas_tank
+        
+    def drive(self):
+        self.gas_tank -= 1
+\end{lstlisting}
+
+Now let's make a subclass.
+\begin{lstlisting}[language = Python]
+class HybridCar(Automobile):
+
+    def __init__(self, gas_tank, battery):
+        Automobile.__init__(self, gas_tank)
+        
+        # initialize additional battery parameter
+        self.battery = 100
+\end{lstlisting}
+
+Try defining \code{prius = HybridCar(50,100)} and running \code{prius.drive()}. It should work. Check \code{prius.gas_tank}. This illustrates basic inheritance of classes. 
+
+\subsection{Polymorphism (G\S11.2)}
+Now we demonstrate \emph{polymorphism.} A subclass can have the same methods defined as their superclass. The methods override the superclass. 
+
+\begin{lstlisting}[language = Python]
+class HybridCar(Automobile):
+
+    def __init__(self, gas_tank, battery):
+        Automobile.__init__(self, gas_tank)
+        
+        # initialize additional battery parameter
+        self.battery = battery
+        
+    def drive(self):
+        self.gas_tank -= .5
+        self.battery -= 1
+\end{lstlisting}
+
+\smallskip
+\noindent Python includes a handy \code{isinstance()} function that helps determine if an object is of a certain class or of an instance of a subclass of that class.
+
+\begin{lstlisting}[language = Python]
+print(isinstance(prius, Automobile))
+print(isinstance(prius, HybridCar))
+\end{lstlisting}

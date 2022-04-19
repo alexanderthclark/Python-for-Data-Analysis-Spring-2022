@@ -1,0 +1,185 @@
+
+
+The \link{https://www.python.org/dev/peps/pep-0020/}{Zen of Python} advises us that ``Errors should never pass silently.'' 
+
+
+\section{Exceptions}
+\scalebox{0.8}{\textit{Reference: \cite{lubanovic2019introducing} Chapter 9}}
+\medskip
+
+Occasionally, you might ask Python to do something impossible. Try running \code{1/0}. You will get an error message, \code{ZeroDivisionError}. Robust code should deal with this possibility intelligently. This is especially true when writing functions. You can avoid errors by writing your code to prevent them from occurring. Or, you might write code that responds to errors. For more on the built-in exceptions, follow \link{https://docs.python.org/3/library/exceptions.html}{this link}.
+
+\smallskip
+\noindent Here's an example of avoiding the division by zero error. 
+
+\begin{lstlisting}[language = Python]
+def pct_change(old, new):
+    delta = new - old
+    if old != 0:
+        pct = 100 * delta / old
+        return pct
+    else:
+        return "Not defined."\end{lstlisting}
+        
+\smallskip
+\noindent Here's an example of dealing with the error, which requires \code{try} and \code{except} statements.
+
+\begin{lstlisting}[language = Python]
+def pct_change1(old, new):
+    delta = new - old
+    try:
+        pct = 100 * delta / old
+        return pct
+    except ZeroDivisionError:
+        return "Not defined."\end{lstlisting}
+        
+\smallskip
+\begin{lstlisting}[language = Python]
+# Will this work?
+def pct_change2(old, new):
+    delta = new - old
+    try:
+        pct = 100 * delta / old
+        return pct
+    return "Not defined."\end{lstlisting}
+    
+    
+\smallskip
+\noindent A \code{try} must be paired with an \code{except}, so the definition of \code{pct_change2} will not work. There must be an \code{except} and, as we use in \code{pct_change1}, it's a good idea to use the form \code{except ExceptionName}. This tells Python what code to run when a certain exception is encountered.
+
+
+\smallskip
+\begin{lstlisting}[language = Python]
+def pct_change3(old, new):
+    try:
+        delta = new - old
+    except TypeError:
+        return "Use ints or floats."
+    try:
+        pct = 100 * delta / old
+        return pct
+    except ZeroDivisionError:
+        return "Not defined."\end{lstlisting}
+
+
+
+\smallskip
+
+\noindent The following function, \code{pct_change4}, actually won't run properly if you attempt to execute \code{pct_change4(1,'cheese')}. Can you figure out why? Think about the ordering of the code. 
+
+\begin{lstlisting}[language = Python]
+def pct_change4(old, new):
+    delta = new - old
+    try:
+        pct = 100 * delta / old
+        return pct
+    except ZeroDivisionError:
+        return "Not defined."
+    except TypeError:
+        return "Use ints or floats."\end{lstlisting}
+        
+\smallskip
+\noindent You do not need to specify the error type in your \code{except} statement. Sometimes this might hide errors that you do want to be surfaced or stop the execution of a program, so use these blanket exceptions carefully. 
+
+\begin{lstlisting}[language = Python]
+def pct_change5(old, new):
+    try:
+        delta = new - old
+        pct = 100 * delta / old
+    except:
+        return "An error occurred."
+    return pct\end{lstlisting}
+    
+\smallskip
+\noindent You might use a blanket except after handling specific errors. 
+
+\begin{lstlisting}[language = Python]
+def pct_change6(old, new):
+    try:
+        delta = new - old
+        pct = 100 * delta / old
+        return pct
+    except ZeroDivisionError:
+        return "You can't divide by zero."
+    except:
+        return "An error occurred."\end{lstlisting}
+        
+\smallskip
+\noindent It can be useful information to know what type of exception your code generates. In that case, you can access and print that error. 
+
+\begin{lstlisting}
+try:
+    'a' + 1
+except Exception as e:
+    print(e)\end{lstlisting}
+    
+\smallskip
+\noindent The use of \code{Exception} above matters. Compare these two programs.
+
+\begin{lstlisting}[language = Python]
+try:
+    'a' + 1
+except TypeError as e:
+    print(e)\end{lstlisting}
+    
+\begin{lstlisting}[language = Python]
+try:
+    'a' + 1
+except ValueError as e:
+    print(e)\end{lstlisting}
+    
+\smallskip
+\noindent Only the first program above actually handles the exception. 
+
+
+\smallskip
+\noindent Now, we consider the use of \code{else} and \code{finally} statements after a \code{try}/\code{except}. An \code{else} clause can be added after the \code{except} clauses, and the statements in the \code{else} clause are executed only if no exceptions were raised. The \emph{else} is then in contrast to the raising of exceptions, in a similar style as when an \code{else} might be used in complement to an \code{if}. What output do you expect from the following program? What if we changed the value of \code{denom}?
+
+\begin{lstlisting}[language = Python]
+denom = 0
+try:
+    print(2 / denom)
+except Exception as e:
+    print(e)
+else:
+    print(3 / denom) \end{lstlisting}
+
+\smallskip
+\noindent Here are slightly more complicated examples. Try running them to see what happens.
+
+\begin{lstlisting}[language = Python]
+products = ['bike','treadmill']
+try:
+    print(products[2])
+except IndexError as e:
+    print(e)
+except Exception as e:
+    print(e, 'other error')
+else:
+    print(products[2], '!') \end{lstlisting}
+    
+\begin{lstlisting}[language = Python]
+products = ['bike','treadmill']
+try:
+    print(products[1])
+except IndexError as e:
+    print(e)
+except Exception as e:
+    print(e, 'other error')
+else:
+    print("Else block time")
+    print(products[2], '!') \end{lstlisting}
+    
+    
+\smallskip
+\noindent Next, we introduce the \code{finally} clause. Whereas the \code{else} block was executed when no exceptions were raised, the \code{finally} closed is executed no matter what. This \link{https://stackoverflow.com/questions/11551996/why-do-we-need-the-finally-clause-in-python}{StackExchange post} helps explain the unique usefulness of this, but we won't got into that much detail.
+
+\begin{lstlisting}[language = Python]
+products = ['bike','treadmill']
+idx = 2
+try:
+    print(products[idx])
+except Exception as e:
+    print(e, 'other error')
+finally:
+    print('End') \end{lstlisting}

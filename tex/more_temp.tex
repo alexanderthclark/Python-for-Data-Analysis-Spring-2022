@@ -1,0 +1,321 @@
+\section{The \code{in} Operator}
+
+The \code{in} operator allows you to determine if an element is contained in a list or tuple. In Python, the statement \code{x in A}, where \code{A} is a list, mirrors the mathematical statement $x\in A$ where $A$ is a set. While we never formally introduced \code{in}, we've already seen it in for loops with the for clause, \code{for item in range(10):}, for example.
+
+\smallskip
+
+Realize that for numerics, \code{in} will evaluate to true as long as the element is equal (\code{==}) to something in the list. That means a float can be \code{in} a list of integers.
+
+\begin{lstlisting}
+chapters_on_midterm = [2,3,4,4,5,6,7,8,9]
+
+# confirm all integers
+for item in chapters_on_midterm:
+    print(item, type(item))
+
+# This is certainly True
+bool1 = 2 in chapters_on_midterm
+
+# What about this? 
+bool2 = 2.0 in chapters_on_midterm # This is True!
+\end{lstlisting}
+
+\smallskip
+
+\noindent Finally, you can use \code{not in} as you might expect. The statement \code{x not in some_list} if there is no element \code{y in some_list} that is equal to \code{x}.
+
+\section{List Methods}
+\scalebox{0.8}{\textit{Reference:\cite{lubanovic2019introducing} Chapter 7}}
+
+Python methods are like functions, but they are associated with objects.
+
+\smallskip
+\noindent Functions look like this: \code{sorted(some_list)}\\
+\noindent Methods look like this: \code{some_list.sort()}
+
+\smallskip
+\noindent For now, we can proceed thinking of them just as functions with this syntax. 
+
+\smallskip
+The function \code{sorted()} and the method \code{.sort()} do the same thing in some sense---both can be used to sort a list. They are different in that \code{sorted()} returns a new sorted list without mutating \code{some_list}. The method \code{.sort()} doesn't return anything; it mutates the list into a sorted list. This difference isn't a property of functions and methods. The difference is particular to \code{sorted()} and \code{.sort()}. 
+
+\begin{lstlisting}
+# Demonstration of sorted() and .sort()
+
+presorted_list = [1,2,3,4]
+alt_list = [1,4,2,3]
+
+c1 = alt_list == presorted_list
+print(c1)
+
+c2 = sorted(alt_list) == presorted_list
+print(c2)
+
+c3 = alt_list == presorted_list
+print(c3)
+
+alt_list.sort()
+
+c4 = alt_list == presorted_list
+print(c4)
+\end{lstlisting}
+
+
+\smallskip
+
+Other important list methods include \code{.append()} and \code{.index()}. \code{.append()} requires an argument---an element to be added to the end of the list.
+
+Running \code{some_list.append(x)} does the same thing \code{some_list += [x]} would accomplish.
+
+\begin{lstlisting}
+# .append() Demonstration
+ones = list()
+
+ones.append(1)
+
+print(ones)
+
+ones += [1.0] # Recall this is the same as ones = ones + [1.0]
+
+print(ones)
+\end{lstlisting}
+
+
+\smallskip
+
+\noindent Next, the \code{.index()} method helps us find the index of the first instance of a particular element in a list. This method requires an argument, and \code{some_list.index(x)} returns the minimum index of \code{x} in \code{some_list}. 
+
+
+\begin{lstlisting}
+# .index() Demonstration
+ones = [1, 1.0] 
+
+print(ones.index(1))
+
+print(ones.index(1.0)) 
+
+# There is no distinction between int and float
+print(ones.index(1.0) == ones.index(1)) 
+\end{lstlisting}
+
+\smallskip
+\noindent \textbf{Exercise:} Remove the duplicates from a list.
+
+\begin{lstlisting}
+big_list = [1,2,4,2,12,4,12,234,1,1,1,1] # a lot duplicates
+
+big_list_without_dups = []
+
+for element in big_list:
+
+  if element not in big_list_without_dups:
+ 
+    big_list_without_dups.append(element) 
+    
+    
+## Alternate version
+
+big_list_without_dups_alt = []
+
+idx = 0 # keep track of index of each element
+for element in big_list:
+    # Add the element if it's the first time we've seen it in big_list
+    first_index = big_list.index(element)
+    if idx == first_index:
+        big_list_without_dups_alt.append(element)
+        
+    # Advance the index for the next element
+    idx += 1
+\end{lstlisting}
+
+
+\section{Strings}
+\scalebox{0.8}{\textit{Reference: \cite{lubanovic2019introducing} Chapter 5}}
+
+Strings behave like lists in terms of indexing, slicing, and iterating. Strings are immutable however.
+
+The \code{in} operator can be used on strings to test if one string is a substring within another string. 
+
+\begin{lstlisting}[language = Python]
+for char in 'team':
+    print(char, char in team):
+    
+print("I" in 'team')
+\end{lstlisting}
+
+
+Important string methods include \code{.upper()}, \code{.lower()}, \code{.isalpha()}, \code{.split()}, and \code{.replace()}. 
+
+The \code{.upper()} and \code{.lower()} methods return a new string in uppercase or lowercase letters, respectively. These do not mutate the original string and no arguments are necessary. 
+
+The \code{.isalpha()} method returns a boolean, stating whether or not the string contains all alphabetical characters (this is different than not being a integer data type for example---a string might still contain a numeric character). 
+
+\begin{lstlisting}
+# In case you can't trust your eyes for l vs 1. 
+
+lowercase_L = "l"
+one = "1"
+
+for item in lowercase_L, one:
+    print(item, item.isalpha())
+\end{lstlisting}
+
+The \code{.replace()} method takes two arguments. It returns a new string that replaces every instance of the first argument with the second argument. The function below returns a more muted string by eliminating all capital letters and converting exclamation marks to periods. 
+
+\begin{lstlisting}
+def lower_your_voice(string):
+    lowercase = string.lower()
+    not_exclamatory = lowercase.replace("!", ".")
+    return not_exclamatory
+    
+print(lower_your_voice("Your card was declined!"))
+\end{lstlisting}
+
+\smallskip
+The \code{.split()} method requires an argument and returns a list, dividing a string into substrings based on the argument. This is especially useful for splitting a sentence into its individual words.
+
+\begin{lstlisting}
+invisible_hand = "It is not from the benevolence of the butcher that we expect our dinner but from their regard to their own interest"
+
+the_words = invisible_hand.split(" ")
+
+print(the_words)
+
+# Note what happens when you split on the first or last character in a string
+
+laugh = 'hahahahah'
+
+split_laugh = laugh.split('h')
+
+print(split_laugh)
+
+# Note what happens when you pass no argument
+print(laugh.split())
+
+# This gives an error. You can't split on a zero-length separator.
+laugh.split("")
+\end{lstlisting}
+
+
+
+\section{Dictionaries}
+\scalebox{0.8}{\textit{Reference: \cite{lubanovic2019introducing} Chapter 8}}
+\smallskip
+
+Dictionaries allow us to store key-value pairs. It's kind of like having one row in a table. Keys are like column names and values are the row-column cell value. Key-value pairs are created as \code{key: value}, then separated by commas and wrapped in curly braces, \code{\{\}}, to create a dictionary. Consider the example below.
+
+\begin{lstlisting}
+workout = {'user': 'Velma', 'fitness_discipline': 'cycling', 'instructor': 'Matt Wilpers'}
+\end{lstlisting}
+
+A specific value is access by indexing the dictionary by the key. 
+
+\begin{lstlisting}
+print(workout['user'])
+\end{lstlisting}
+
+\smallskip
+We can add new key-value pairs by assigning the value to the dictionary at that key. 
+
+\begin{lstlisting}
+# Build a dictionary from scratch
+journal = dict() # creates an empty dictionary, can also use {}
+
+journal['2020-10-03'] = "Today I learned a lot of Python. It was buckets of fun."
+\end{lstlisting}
+
+\smallskip
+\noindent The \code{in} operator works on dictionaries by searching the keys. 
+
+\begin{lstlisting}
+# Help translate bad journalism
+media_translator = {'is caused by': 'is correlated with'}
+
+print('is caused by' in media_translator)
+print('is correlated with' in media_translator)
+\end{lstlisting}
+
+
+You can access the keys with the \code{.keys()} operator and values with the \code{.values()} operator. So \code{x in some_dict} is actually a shorthand for \code{x in some_dict.keys()}.
+
+\smallskip
+
+\noindent Dictionary keys must be immutable. Tuples are fine. Lists are not. 
+
+\begin{lstlisting}
+# Economist Santa
+
+gifts = {} # could also use dict() here 
+
+for child in ['Anna', 'Boris']:
+    for year in [2020, 2021]:
+        
+        key = child, year # this is a tuple just like (child, year)
+        
+        gifts[key] = 'money'
+        
+print(gifts)
+\end{lstlisting}
+
+
+
+
+\section{Sets}
+\scalebox{0.8}{\textit{Reference: \cite{lubanovic2019introducing} Chapter 8}}
+\smallskip
+
+I find sets to be underrated. They give flexibility in analysis because they allow for quick intersections and unions (e.g. find and analyze users who did this \emph{and/or} that).
+
+\smallskip
+\noindent Sets are unordered and duplicates are ignored. We construct them like lists, but use \code{\{\}} instead of \code{[]}. Note that to create an empty set, you should use \code{set()} because \code{\{\}} creates an empty dictionary. 
+
+
+\smallskip
+\noindent Being unordered means it is true that \code{\{1,2\} == \{2,1\}}.
+
+
+\smallskip
+\noindent It's not exactly right to say that sets \emph{can't} have duplicates. You can create a set with duplicate elements and no error will be thrown. But those duplicates are ignored so that the created set object will not in fact have any duplicates. Thus, it is true that \code{\{1,2\} == \{2,1,1,2\}}.
+
+
+\bigskip Three important methods are \code{.union()}, \code{.intersection()}, and \code{.difference()}. Each of these acts on a set and requires another set as an argument. Intersection and union work like the set operations $\cap$ and $\cup$. The difference method performs set subtraction, $\setminus$. Recall that set subtraction is not commutative; $A\setminus B \neq B\setminus A$ unless $A = B$. 
+
+\begin{lstlisting}
+# Union and Intersection
+
+primes = {2,3,5}
+evens = {2,4,6}
+
+even_and_prime = primes.intersection(evens)
+
+even_or_prime = primes.union(evens)
+
+for set_ in even_and_prime, even_or_prime: # note we're iterating over a tuple
+    print(set_)
+    
+# Set Subtraction
+
+contiguous_USA = {'New York', 'Kentucky', 'Wisconsin', 'California'} # among other states
+
+tectonic_seceder = {'California'}
+
+
+print(contiguous_USA.difference(tectonic_seceder))
+
+# We can also use the - operator
+print(contiguous_USA - tectonic_seceder)
+
+## More Subtraction 
+
+cold_places = {'Wisconsin', 'Yukon'}
+
+print(contiguous_USA.difference(cold_places))
+
+# Reverse the arguments
+print(cold_places.difference(contiguous_USA))
+\end{lstlisting}
+
+
+\bigskip
+
+Now that we've seen these data types, you are well prepared to work with a lot of data you might find in the wild. See the code from class for an example using a public API. 

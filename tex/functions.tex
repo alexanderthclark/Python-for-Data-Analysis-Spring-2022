@@ -1,0 +1,285 @@
+\noindent \scalebox{0.8}{\textit{Reference: \cite{lubanovic2019introducing} Chapter 9}}
+
+\emph{Functions} make your code easier to read and write by performing a certain task based on some number of arguments the function takes. Whenever you find yourself copying and pasting code in a program, you should ask yourself if you shouldn't be using a function instead. 
+
+% unplaced: you can put functions in lists but not operators 
+
+\section{Detour: Callables and Functions}
+
+It's a common mistake to call more things functions than actually are functions. There are other things like methods and classes you'll be formally introduced to later and that have a similar feel. Classes and functions are both \emph{callables}, just meaning something you can call by using parentheses and sometimes arguments inside those parentheses.
+
+Consider the code and output below (pasted from the Terminal in VSCode). 
+\begin{lstlisting}[language = Python, keywordstyle = \color{black}, stringstyle = \color{black}]
+>>> list
+<class 'list'>
+>>> len
+<built-in function len>
+>>> callable(len)
+True
+>>> callable(list)
+True
+>>> callable
+<built-in function callable>
+>>> callable(callable)
+True
+\end{lstlisting}
+
+
+\section{Function Basics}
+
+In math, you might define a function $f(x) = x^2$. Just as $f$ does something with $x$, a function like 
+\code{print} does something with whatever input we pass inside the parentheses. However, an argument/parameter is not always necessary or even allowed depending on the function. In the example below, we define our first function.
+
+\begin{lstlisting}
+def your_annoying_friend():
+    print("crypto")
+\end{lstlisting}
+
+A function definition is begun with the keyword \code{def}. Then you give the function name and input arguments inside parentheses. After the parentheses there is a colon. Then the code dictating what the function does is indented below.
+
+
+Our function \code{your_annoying_friend} takes no arguments. No matter how many times you call \code{your_annoying_friend}, all it does is print \code{'crypto'}. Try passing an argument inside, like \code{your_annoying_friend('new conversation topic')}, but you'll only get an error because the function is not defined to accept arguments. Further this function actually \emph{returns} nothing because there is no \emph{return statement}. Try running \code{a = your_annoying_friend()}. The variable \code{a} has the value \code{None}, the NoneType (see \cite{lubanovic2019introducing} page 144 for a brief discussion). 
+
+
+We'll introduce return statements shortly, but first, let's include an argument in a new function. Consider the cheer we made in Section \ref{sec:forloop}. We can make this into a function so that it works for any value of \code{word}.
+
+\begin{lstlisting}
+# Cheer
+word = 'PYTHON'
+for char in word:
+    print("Give me a",char, '!')
+    print("    ", char)
+print("What's that spell?")
+print("    ",word) \end{lstlisting}
+
+\begin{lstlisting}
+# Cheer Function
+def cheer(word):
+    ''' Doc string '''
+    for char in word:
+        print("Give me a",char, '!')
+        print("    ", char)
+    print("What's that spell?")
+    print("    ",word) \end{lstlisting}
+    
+    
+ A function will return a value once it reaches a return statement, begun with the keyword \code{return}. Once the return statement is reached, the function quits executing and any leftover bits of the program are abandoned. Call the function \code{one} below. You'll find that \code{"testing"} is never printed because it comes after \code{return 1}. We can say this function accepts no parameters and always does two things: \emph{prints} \code{"Coming right up."} and \emph{returns} \code{1}.
+ 
+\begin{lstlisting}
+def one():
+    print("Coming right up.")
+    return 1
+    print("testing")
+\end{lstlisting}
+
+
+\subsection{Naming}
+
+The same rules for naming variables apply to naming functions. Again, see \link{https://www.python.org/dev/peps/pep-0008/}{PEP 8}. Readability counts. 
+
+ 
+\section{Arguments and Parameters}
+ 
+I might slip, but there is technically a difference between \emph{arguments} and \emph{parameters}. \cite{lubanovic2019introducing} tells us the values you pass into the function are the arguments. Those values are copied the corresponding \code{parameters} inside the function. In the below, \code{add} is defined and called with arguments \code{1} and \code{2}, and these are copied to the parameters \code{x} and \code{y}.
+
+\begin{lstlisting}
+def add(x,y):
+    return x + y
+    
+add(1,2)
+\end{lstlisting}
+ 
+ 
+ The order of your arguments matters. 
+ 
+ \begin{lstlisting}
+ def investment_strategy(buy, sell):
+    print("buy", buy)
+    print("sell", sell)
+ \end{lstlisting}
+ 
+ Calling \code{investment_strategy('high', 'low')} and \code{investment_strategy('low', 'high')} produce very different ideas. These arguments are \emph{positional arguments}, in that they are copied to their parameters based on the ordering. If that produces confusion, you can instead use \emph{keyword arguments}. 
+ 
+ \begin{lstlisting}
+ investment_strategy(sell = 'high', buy = 'low')
+ \end{lstlisting}
+ 
+ You can also specify \emph{default} parameter values so that you don't have to pass an argument. This is demonstrated in the definition below.
+ 
+\begin{lstlisting}
+def my_favorite_class(a = 'Python'):
+    print(a, "!", sep = '')
+\end{lstlisting}
+ 
+ 
+\subsection{A mutability gotcha}
+
+The default arguments are evaluated once when a function is defined.\footnote{See \link{https://docs.python-guide.org/writing/gotchas/}{common gotchas} from \cite{reitz2016hitchhiker} and \cite{lubanovic2019introducing} page 147.} This can create something unexpected when using a mutable default argument---if you mutate the argument, it will stay mutated for future use of the function. 
+
+
+\begin{lstlisting}
+def risky_function(x, l = []):
+    l.append(x)
+    return l
+\end{lstlisting}
+
+Run \code{risky_function('a')} twice. You might expect \code{['a']} to be returned in both instances, but you will get \code{['a','a']} on the second call. You can avoid this behavior with something like the following. 
+
+\begin{lstlisting}
+def workaround(x, l = None):
+    if l == None:
+        l = list()
+    l.append(x)
+    return l
+\end{lstlisting}
+
+\section{Annotation and Documentation}
+
+A function can include a documentation string (docstring) and annotation regarding the intended argument data types. Annotations for a parameter are to be preceded with a colon. An annotation for the output can be created with \code{->} before the annotation, between the closed parenthesis and colon. Python simply stores this information. There are no checks or enforcement. Below, the default argument for \code{y} doesn't even obey the annotation. 
+
+\begin{lstlisting}
+def annotated_function(x:str, y:'int > 0' = -1) -> bool:
+    "Sample Docstring"
+    return x
+    
+# Violates the annotation but still runs
+annotated_function(1, -99)
+\end{lstlisting}
+
+\index{assert}
+If you want checks enforced, you will have to code them in yourself. One way to do that is by using an assert statement inside your function. With \code{assert} and then a boolean expression, your code will break if the expression is false.
+
+\begin{lstlisting}
+def assertive_function(x: int):
+    assert type(x) == int
+    return x
+\end{lstlisting}
+
+This doesn't help the user of your code very much. So instead, you might want to create an exception of your own to explain what went wrong. This is done with \code{raise}, which will be covered in more detail in Chapter \ref{chapter:except}.\footnote{\link{https://docs.python.org/3/tutorial/errors.html\#raising-exceptions}See also the {official documentation} for raising exceptions.}
+
+\begin{lstlisting}
+def integer_identity(x: int):
+    if type(x) != int:
+        raise TypeError("x must be an integer")
+    return x
+\end{lstlisting}
+
+
+You can access function definitions and documentation using \code{?function_name} or \code{help(function_name)}.
+
+
+
+\section{Local and Global Variables and Namespaces}
+
+As we keep creating keyword parameters in our functions, or additional variables inside the function, you might start to wonder what if I had already used that keyword as a variable name? The below shows that no conflict arises. \code{foo} will not overwrite the variables \code{a} and \code{b}, and \code{foo} still operates without interference from those variables being previously defined. 
+ 
+\begin{lstlisting}
+a = 10
+b = 10
+def foo(a = 1):
+    b = 2*a
+    return b
+
+x = foo(a = 0)
+print(x)
+print(a, b)
+\end{lstlisting}
+
+The reason this all behaves so well is that there is a global \emph{namespace} in which \code{a} and \code{b} are defined as \code{10}. And there is a separate namespace for the function \code{foo}, where \code{a} and \code{b} can exist independently, just as ``die'' can mean one thing in England and another thing in Germany. 
+
+\begin{center}
+    \link{https://www.youtube.com/watch?v=gaXigSu72A4}{\includegraphics[width = .56\textwidth]{images/diebartdie.jpeg}}
+    
+Above: an argument over namespaces from \link{https://www.youtube.com/watch?v=gaXigSu72A4}{\emph{The Simpsons}}.
+\end{center}
+
+
+There are local variables and there are global variables. A variable's \emph{scope} is the part of a program where the variable can be accessed. Variables created inside a function are local and their scope is the function. Different functions can have local variables of the same name without creating any kind of interference thanks to the separate namespaces.
+ 
+%We'll return to this when we cover modules and IPython.\footnote{remind me}
+ 
+\section{Anonymous Functions}
+
+Anonymous functions are created as lambda functions. The main use for this for functions that have a very short definition and that might only be used once in a program, or perhaps as an argument in a higher-order function (covered in Section \ref{sec:higher}).
+
+\begin{lstlisting}
+def simple_function(x):
+    return 1 * (x > 0)
+\end{lstlisting}
+
+The above can be replaced by 
+\begin{lstlisting}
+simple_function = lambda x: 1 * (x > 0)
+\end{lstlisting}
+
+We can even do something a little more complicated. 
+
+\begin{lstlisting}
+simple_but_complicated = lambda x, y=-9: 1 * (x > y)
+\end{lstlisting}%\footnote{Here we have 1 times a boolean. \code{1*True} is \code{True} and \code{1*False} is \code{False}.}
+
+ 
+\section{Higher-Order Functions Like \texttt{map}}\label{sec:higher}
+ 
+A function that takes another function as an argument is a higher-order function (see \cite{ramalho2015fluent}). Two examples are the built-in functions \code{sorted} and \code{map}.
+
+\index{sorting}
+\code{sorted} takes an iterable and returns a new sorted iterable as long as every element of the iterable can be compared. Observe \code{sorted([3,1,2]) == [1, 2, 3]}. What makes \code{sorted} a higher-order function is the optional \code{key} argument. 
+
+\index{map}
+\code{map} takes a function and applies it to every element in the iterable. It returns something call an iterator, holding the results. You can convert the iterator to a list using \code{list()} to see the results. 
+
+\begin{lstlisting}
+# Square the elements of a list
+# [0,1,4,9]**2 doesn't work
+
+f = lambda x: x**2
+print(map(f, [0,1,2,3]))
+print(list(map(f, [0,1,2,3])))
+\end{lstlisting}
+
+\section{Examples}
+
+\begin{lstlisting}
+def letter_value(letter):
+    
+    # convert to lowercase
+    letter = letter.lower() 
+    # according to some blog
+    if letter in 'eaionrtlsu':
+        return 1
+    elif letter in 'dg':
+        return 2
+    elif letter in 'bcmp':
+        return 3
+    elif letter in 'fhvwy':
+        return 4
+    elif letter == 'k':
+        return 5
+    elif letter in 'jx':
+        return 8
+    elif letter in 'qz':
+        return 10
+    else:
+        return "not a valid letter"
+    
+def word_value(word):
+    return sum(map(letter_value, word))
+\end{lstlisting}
+
+Now run \code{sorted(['friends', 'enemies', 'burgers', 'I', 'a', 'I', 'I'], key = word_value)}.
+
+ 
+ 
+ \subsection{Exercise!}
+ \begin{lstlisting}
+# Find a nearby multiple of five
+def find_close_multiple_of_five(num):
+    # check if multiple of five
+    is_multiple = num % 5 == 0
+    while is_multiple not True:
+        num += 1
+        is_multiple = num % 5
+    return num \end{lstlisting}
+    
+    

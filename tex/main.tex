@@ -1,0 +1,132 @@
+\documentclass{book} % utf8,utf8x
+%\usepackage[utf8]{inputenc}
+
+\usepackage{mystyle} 
+\usepackage{customcolors}
+\usepackage{mycommands}
+\makeindex
+
+% Title
+\title{Python for Data Analysis \\ \scalebox{0.8}{Lecture Notes}}
+
+
+\author{\scalebox{1}{By: \link{https://github.com/alexanderthclark}{Alexander Clark}\thanks{\texttt{ac4725@columbia.edu}\hspace{2pt}\faHandPeaceO}} \\
+ {\scalebox{0.8}{\centering\emph{Columbia University SPS}}} }
+
+\vspace{4cm}
+
+\date{\scalebox{.8}{This version: \today}}
+
+% name the list of listings 
+\renewcommand\lstlistlistingname{Code} 
+%\setcounter{tocdepth}{1}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+
+
+\vfill 
+%\input{copyright}
+
+
+%\doclicenseThis
+
+\vspace{5cm}
+
+%\vfill
+%\thispagestyle{empty}
+
+\tableofcontents
+%% Add list of listings for code
+%\lstlistoflistings
+
+\newpage
+
+% I use * to make these unnumbered and then manually add to the toc
+
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+\markboth{}{Preface}
+\input{preface}
+
+\mainmatter
+
+% Part I --------------------------------
+\part{Programming}
+
+\chapter{Input, Processing, and Output}\label{chapter:c1}
+\input{input.tex}
+
+\chapter{If, Elif, Else}
+\input{decisions}
+
+\chapter{Lists}
+\input{lists}
+
+\chapter{Repetition Structures}
+\input{repetitions}
+
+\chapter{Functions}
+\input{functions}
+
+\chapter{Exceptions}\label{chapter:except}
+\input{exceptions}
+
+\chapter{More Data Structures}
+\input{tuples}
+\input{more_temp}
+
+
+\chapter{Modules}
+\input{modules}
+
+\chapter{Object Oriented Programming}
+\input{oop}
+
+\chapter{IPython}
+\input{ipython}
+
+
+\part{Data}%\label{part:p1}
+
+\chapter{NumPy}
+\input{numpy}
+
+\chapter{Pandas: Series and DataFrames}
+\input{pandas1}
+
+\chapter{Pandas: Join, Merge, and Other Manipulation}
+\input{pandas2}
+
+\chapter{Data Visualization}
+\input{dataviz}
+
+% start out with spine_mod -i
+% start out with df.melt()
+% more with subplots and squeeze
+\chapter{Time and Dates}
+\input{time}
+
+\chapter{Python for Excel}
+\input{excel}
+
+\chapter{Applications}
+\input{experiments}
+
+\input{ghostcites} % get in some extra cites with \nocite
+
+% Back Matter  --------------------------------
+\backmatter
+
+\printbibliography
+%\printindex
+%\chapter*{About the Author}
+%\faHandPeaceO
+\end{document}
+
+
+
+
+\end{document}

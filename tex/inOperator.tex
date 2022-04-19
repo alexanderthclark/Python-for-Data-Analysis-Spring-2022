@@ -1,0 +1,26 @@
+
+\subsection{The \code{in} Operator (G\S7.4)}
+
+The \code{in} operator allows you to determine if an element is contained in a list. In Python, the statement \code{x in A}, where \code{A} is a list, mirrors the mathematical statement $x\in A$ where $A$ is a set. While we never formally introduced \code{in}, we've already seen it in for loops with the for clause, \code{for item in range(10):}, for example.
+
+\smallskip
+
+Realize that for numerics, \code{in} will evaluate to true as long as the element is equal (\code{==}) to something in the list. That means a float can be \code{in} a list of integers.
+
+\begin{lstlisting}[language = Python]
+chapters_on_midterm = [2,3,4,4,5,6,7,8,9]
+
+# confirm all integers
+for item in chapters_on_midterm:
+    print(item, type(item))
+
+# This is certainly True
+bool1 = 2 in chapters_on_midterm
+
+# What about this? 
+bool2 = 2.0 in chapters_on_midterm # This is True!
+\end{lstlisting}
+
+\smallskip
+
+\noindent Finally, you can use \code{not in} as you might expect. The statement \code{x not in some_list} if there is no element \code{y in some_list} that is equal to \code{x}.

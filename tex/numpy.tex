@@ -1,0 +1,180 @@
+
+\scalebox{0.8}{\textit{Reference: \cite{mckinney2012python} Chapter 4, \cite{vanderplas2016python} \link{https://jakevdp.github.io/PythonDataScienceHandbook/02.00-introduction-to-numpy.html}{Chapter 2}}}
+
+\smallskip
+
+NumPy (Numerical Python) is an important library for working with arrays. This shouldn't require any additional installation in Anaconda and is available in Google Colab. NumPy is conventionally imported with the alias \code{np}: \code{import numpy as np}.
+
+\section{The Array}
+\noindent The NumPy array is important. 
+
+\begin{lstlisting}[language = Python]
+import numpy as np
+
+empty_array = np.array([])
+print(len(empty_array))
+
+zero1 = np.array([0])
+print(len(zero1))
+
+zero2 = np.array(0)
+#print(len(zero2))
+
+#try_this = np.array(1,2)
+
+two_d = np.array(((1,2),(3,4)))
+
+for array in [empty_array, zero1, zero2, two_d]:
+    print(type(array))
+\end{lstlisting}
+
+The array is of a class ndarray. 
+
+Finally, note arrays can be of mixed type. Mixed type can be constructed by specifying the data type as object, \code{np.array(['s',1], dtype = object)}. Still I don't know a good reason to use NumPy with mixed types. And as the name suggests, NumPy is designed for numeric data. Notice that \code{np.array(['s',1])}, without specifying \code{dtype = object}, results in the \code{1} being converted to a string. 
+
+\section{Indexing}
+Basic indexing is done like for lists. However, arrays can have multiple dimensions.
+
+\begin{lstlisting}[language = Python]
+arr = np.arange(10)
+
+print(arr[5]) # the 5th index
+
+# slice
+print(arr[5:8])
+# reassign
+arr[5:8] = 0
+print(arr)
+
+print(arr[10]) # error remember we have zero-based indexing
+\end{lstlisting}
+
+\noindent Array slices are \emph{views}. The data is not copied and any modifications are transferred to the source array.
+
+\begin{lstlisting}[language = Python]
+arr_slice = arr[5:8]
+print(arr_slice)
+
+arr_slice = 1 # does nothing bc it writes over the slice with an int
+print(arr, arr_slice)
+
+arr_slice = arr[5:8]
+print(arr, arr_slice)
+
+arr_slice[:] = 1, 2, 3 # mutates both
+print(arr, arr_slice)
+
+arr_slice[:] = -40 # mutates both
+print(arr, arr_slice)
+\end{lstlisting}
+
+\smallskip
+\noindent With multidimensional arrays, there's a bit more to indexing.
+
+\begin{lstlisting}[language = Python]
+arr2d = np.array( ( (1,2), (8,9) ) ) 
+\end{lstlisting}
+
+Thinking of the two-D array as a matrix, the first index place will select the row and the second will select the column.
+
+\begin{lstlisting}[language = Python]
+print(arr2d[0])
+
+print(arr2d[0][0])
+print(arr2d[0,1]) # these are the same
+
+
+print(arr2d[:,-1]) # get the last item from each row
+\end{lstlisting}
+
+\noindent Check Figure 4-2 in McKinney for a good illustration of slicing two-D arrays.
+
+
+\subsubsection{Boolean Indexing}
+
+Recall \code{arr} from above. We left it with value \code{arr = np.array([  0,   1,   2,   3,   4, -40, -40, -40,   8,   9])}. We can index it based on a boolean condition using a syntax \code{arr[<condition>]}
+
+\begin{lstlisting}
+print(arr)
+
+print(arr[arr > 0]) # reduces the array
+\end{lstlisting}
+
+We can combine conditions with logical negations, ands and ors, but \emph{not} with the \code{not, and, or} keywords. Use \code{\~} to negate an array of booleans, \code{&} for and, and \code{|} for or.
+
+\subsection{Functions}% (McKinney \S4.2, 4.3)}
+
+Universal functions perform element-wise operations. 
+
+\begin{lstlisting}[language = Python]
+arr = np.arange(10)
+
+print(np.sqrt(arr))
+\end{lstlisting}
+
+There are also import statistical functions like \code{np.mean()} and \code{np.std()} for averaging and finding the standard deviation. 
+
+\subsection{Linear Algebra}% (McKinney \S4.5)}
+
+We can access linear algebra functions using the \code{numpy.linalg} \emph{submodule}.
+
+
+\smallskip
+\noindent As demonstrated above, operators like \code{*} apply element wise. If we have an array \code{x = np.array([1,2])}, then \code{x * x} gives an output of \code{np.array([1,4])}. Thus, \code{*} is not the dot product $\cdot$. To get the scalar-valued  $x\cdot x = \sum x_i ^2$, we need \code{np.dot(x,x)}. The below illustrates the same with matrix multiplication.
+
+\begin{lstlisting}[language = Python]
+x = np.array([[1,0],[0,1]]) # identity
+y = np.array([[8,1], [2,3]])
+
+mystery1 = x * y
+mystery2 = np.matmul(x,y)
+\end{lstlisting}
+
+\noindent You'll find \code{mystery2 == y} which is what should be expected for matrix multiplication. \code{mystery1} gives \code{array([[8, 0],[0, 3]])}, meaning element-wise multiplication was done. Python didn't know you wanted matrix multiplication. You can however call create a specific matrix object with \code{np.matrix()}. Let's repeat the above. 
+
+
+\begin{lstlisting}[language = Python]
+x = np.matrix([[1,0],[0,1]]) # identity
+y = np.matrix([[8,1], [2,3]])
+
+mystery1 = x * y
+mystery2 = np.matmul(x,y)
+
+print(mystery1 == mystery2)
+\end{lstlisting}
+
+You can invert a matrix with \code{np.linalg.inv()}, and it will accept either an array or \code{np.matrix} object.
+
+
+
+\subsubsection{Regression Exercise}
+\noindent Let's illustrate with a simple linear regression with no intercept. Suppose we have a single independent variable and linear model
+$$ y = \beta x + \epsilon .$$
+
+\noindent Let's simulate some data. We'll assume $\beta = 1$, $\epsilon \sim N(0,1)$, and find $\hat{\beta}$ from simulated data. Recall $\hat{\beta} = (X^T X)^{-1} X^T Y$ so this is a matter of matrix multiplication.
+
+\begin{lstlisting}[language = Python]
+import numpy as np
+
+n_obs = 100 # observations
+x = np.random.random(n_obs)
+epsilon = np.random.normal(0,1,n_obs)
+true_beta = 1
+
+y = true_beta * x + epsilon
+
+# make `tall` matrices with rows for each observation
+x_matrix = np.matrix(x).T
+y_matrix = np.matrix(y).T 
+
+# Check on linear algebra and operators
+(x_matrix.T * x_matrix)**-1 == np.linalg.inv( np.matmul(x_matrix.T, x_matrix) )
+# above actually compares element to element
+
+
+beta_hat = (x_matrix.T * x_matrix)**-1 * (x_matrix.T * y_matrix)
+\end{lstlisting}
+
+You can find more linear algebra examples on my \link{https://github.com/alexanderthclark/Linear-Algebra-with-Python}{github}.
+
+\

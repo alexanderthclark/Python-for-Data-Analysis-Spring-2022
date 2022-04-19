@@ -1,0 +1,75 @@
+\section{IPython and Jupyter}
+
+
+
+\scalebox{0.8}{\textit{Reference: \cite{mckinney2012python} Chapter 2 and \cite{vanderplas2016python} Chapter 1}}
+
+
+Thus far, we've been using Google Colab, which runs IPython notebooks. Now, we'll use Jupyter. Basically, we're moving off of the cloud.
+
+
+\subsection{IPython Basics}
+The Jupyter notebook is an interactive document for code, text, data visualization, and other output. Python's Jupyter kernel uses the IPython system, so all of the IPython basics we'll cover will apply to Jupyter notebooks. Beyond simply executing Python code, IPython comes with enhanced features that make coding easier. I've highlighted a few here. Read through McKinney \S2.2 or check the IPython sections from Vanderplas's \link{https://jakevdp.github.io/PythonDataScienceHandbook/01.02-shell-keyboard-shortcuts.html}{Python Data Science Handbook}. 
+
+\smallskip
+
+\noindent \textbf{Tab completion} is a feature that allows you to hit tab following some input and then any variables matching the characters will be displayed. 
+
+\smallskip
+
+\noindent \textbf{Introspection} refers to the ability to place a \code{?} before or after a variable and executing the line will display helpful information about the object. For a function, you'll be shown the \emph{docstring}.
+
+\smallskip
+\noindent Notebooks are divided into discrete code cells. You can select multiple with shift and select. Then use \texttt{shift-m} to \textbf{merge cells}. Use \texttt{ctrl-c} to interrupt a command. 
+
+\smallskip
+\noindent There are also certain \textbf{magic commands} that begin with a \code{\%}. My favorite are \code{\%\%timeit} and \code{\%load}. See McKinney page 29 for a table of magic commands or Vanderplas \link{https://jakevdp.github.io/PythonDataScienceHandbook/01.03-magic-commands.html}{here}. Another useful magic command when working with your own modules is the \link{https://ipython.org/ipython-doc/3/config/extensions/autoreload.html}{autoreload command}. If you are developing in a separate .py file and prototyping in a notebook, this is very handy. 
+
+\begin{lstlisting}
+%load_ext autoreload
+%autoreload 2
+\end{lstlisting}
+
+
+
+\smallskip
+\noindent You can run \textbf{shell commands} with \code{!} or \code{\%} as well. The former creates a subshell, so it cannot be used for changing your working directory. See more \link{https://jakevdp.github.io/PythonDataScienceHandbook/01.05-ipython-and-shell-commands.html}{here} (Vanderplas). 
+
+
+
+
+\subsection{Extensions}
+I have installed the \emph{code-folding} extension, which I recommend to anyone who might be dealing with messy notebooks.
+
+
+
+\subsection{Peak Under the Hood: Grading}
+
+\noindent This is on the more complicated end, but here is how I intended to grade your .py files from the midterm.
+
+\begin{lstlisting}[language = Python]
+# all submissions are store in folder PyFiles
+import os # module for additional string-based shell commands
+from importlib import reload # allows for reloading a module
+
+# ls lists all files in a folder
+# Put all file names in a list
+files = !ls ~/PyFiles
+
+# Change working directory
+%cd ~/PyFiles
+
+for file in files:
+    # rename the file 
+    os.system("mv " + file + " temp.py")
+    import temp
+    reload(temp) # overwrites previous iteration import
+    
+    # grade file
+    print(file)
+    print(temp.add(2,3)) # all files contain a function named add
+
+    # name the file back
+    os.system("mv temp.py " + file)
+\end{lstlisting}
+

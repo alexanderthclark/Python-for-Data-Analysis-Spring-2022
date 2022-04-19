@@ -1,0 +1,428 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.9 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{apa/global//global/global}
+    \entry{antao2022}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=a1603dba7b08187641e0b2b0cf7bcd83}{%
+           family={Antao},
+           familyi={A\bibinitperiod},
+           given={Tiago\bibnamedelima Rodrigues},
+           giveni={T\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Manning Publications}%
+      }
+      \strng{namehash}{a1603dba7b08187641e0b2b0cf7bcd83}
+      \strng{fullhash}{a1603dba7b08187641e0b2b0cf7bcd83}
+      \strng{bibnamehash}{a1603dba7b08187641e0b2b0cf7bcd83}
+      \strng{authorbibnamehash}{a1603dba7b08187641e0b2b0cf7bcd83}
+      \strng{authornamehash}{a1603dba7b08187641e0b2b0cf7bcd83}
+      \strng{authorfullhash}{a1603dba7b08187641e0b2b0cf7bcd83}
+      \field{sortinit}{A}
+      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Fast Python for Data Science}
+      \field{year}{2022}
+    \endentry
+    \entry{clark2022story}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=4759ee9f34affe6e8ca1d8c18e9f2de7}{%
+           family={Clark},
+           familyi={C\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{4759ee9f34affe6e8ca1d8c18e9f2de7}
+      \strng{fullhash}{4759ee9f34affe6e8ca1d8c18e9f2de7}
+      \strng{bibnamehash}{4759ee9f34affe6e8ca1d8c18e9f2de7}
+      \strng{authorbibnamehash}{4759ee9f34affe6e8ca1d8c18e9f2de7}
+      \strng{authornamehash}{4759ee9f34affe6e8ca1d8c18e9f2de7}
+      \strng{authorfullhash}{4759ee9f34affe6e8ca1d8c18e9f2de7}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Matplotlib for Storytellers}
+      \field{year}{2022}
+    \endentry
+    \entry{cunningham2021causal}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=4dcc5a18019c71f8991659bdbf42b2b7}{%
+           family={Cunningham},
+           familyi={C\bibinitperiod},
+           given={Scott},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Yale University Press}%
+      }
+      \strng{namehash}{4dcc5a18019c71f8991659bdbf42b2b7}
+      \strng{fullhash}{4dcc5a18019c71f8991659bdbf42b2b7}
+      \strng{bibnamehash}{4dcc5a18019c71f8991659bdbf42b2b7}
+      \strng{authorbibnamehash}{4dcc5a18019c71f8991659bdbf42b2b7}
+      \strng{authornamehash}{4dcc5a18019c71f8991659bdbf42b2b7}
+      \strng{authorfullhash}{4dcc5a18019c71f8991659bdbf42b2b7}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Causal inference: The Mixtape}
+      \field{year}{2021}
+    \endentry
+    \entry{gaddis2018starting}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=d7edbe33702c231f48aafddb07f48c54}{%
+           family={Gaddis},
+           familyi={G\bibinitperiod},
+           given={Tony},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Pearson}%
+      }
+      \strng{namehash}{d7edbe33702c231f48aafddb07f48c54}
+      \strng{fullhash}{d7edbe33702c231f48aafddb07f48c54}
+      \strng{bibnamehash}{d7edbe33702c231f48aafddb07f48c54}
+      \strng{authorbibnamehash}{d7edbe33702c231f48aafddb07f48c54}
+      \strng{authornamehash}{d7edbe33702c231f48aafddb07f48c54}
+      \strng{authorfullhash}{d7edbe33702c231f48aafddb07f48c54}
+      \field{sortinit}{G}
+      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Starting out with Python}
+      \field{year}{2018}
+    \endentry
+    \entry{long2021}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=c9595dd6c78bbf816072b5b556ec2efc}{%
+           family={Long},
+           familyi={L\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Manning Publications}%
+      }
+      \strng{namehash}{c9595dd6c78bbf816072b5b556ec2efc}
+      \strng{fullhash}{c9595dd6c78bbf816072b5b556ec2efc}
+      \strng{bibnamehash}{c9595dd6c78bbf816072b5b556ec2efc}
+      \strng{authorbibnamehash}{c9595dd6c78bbf816072b5b556ec2efc}
+      \strng{authornamehash}{c9595dd6c78bbf816072b5b556ec2efc}
+      \strng{authorfullhash}{c9595dd6c78bbf816072b5b556ec2efc}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Good Code, Bad Code}
+      \field{year}{2021}
+    \endentry
+    \entry{lubanovic2019introducing}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=0d97d3fd6e428b16a2b7852b209ec017}{%
+           family={Lubanovic},
+           familyi={L\bibinitperiod},
+           given={Bill},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly Media}%
+      }
+      \strng{namehash}{0d97d3fd6e428b16a2b7852b209ec017}
+      \strng{fullhash}{0d97d3fd6e428b16a2b7852b209ec017}
+      \strng{bibnamehash}{0d97d3fd6e428b16a2b7852b209ec017}
+      \strng{authorbibnamehash}{0d97d3fd6e428b16a2b7852b209ec017}
+      \strng{authornamehash}{0d97d3fd6e428b16a2b7852b209ec017}
+      \strng{authorfullhash}{0d97d3fd6e428b16a2b7852b209ec017}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Introducing Python: Modern Computing in Simple Packages}
+      \field{year}{2019}
+    \endentry
+    \entry{luca2020want}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=267b0e6bcab608a51779b5a6e41b162a}{%
+           family={Luca},
+           familyi={L\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=a6c91d074ef9bc57eee5150d98040e30}{%
+           family={Bazerman},
+           familyi={B\bibinitperiod},
+           given={Max\bibnamedelima H},
+           giveni={M\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Massachusetts Institute of Technology, Cambridge, MA}%
+      }
+      \strng{namehash}{7ab02f98d972498ca9b2887ee4b763e9}
+      \strng{fullhash}{7ab02f98d972498ca9b2887ee4b763e9}
+      \strng{bibnamehash}{7ab02f98d972498ca9b2887ee4b763e9}
+      \strng{authorbibnamehash}{7ab02f98d972498ca9b2887ee4b763e9}
+      \strng{authornamehash}{7ab02f98d972498ca9b2887ee4b763e9}
+      \strng{authorfullhash}{7ab02f98d972498ca9b2887ee4b763e9}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{MIT Sloan Management Review}
+      \field{number}{4}
+      \field{title}{Want to Make Better Decisions? Start Experimenting}
+      \field{volume}{61}
+      \field{year}{2020}
+      \field{pages}{67\bibrangedash 73}
+      \range{pages}{7}
+    \endentry
+    \entry{mckinney2012python}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=27ca77940a5e8c07c5d89d0f3fb11d75}{%
+           family={McKinney},
+           familyi={M\bibinitperiod},
+           given={Wes},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly Media, Inc.}%
+      }
+      \strng{namehash}{27ca77940a5e8c07c5d89d0f3fb11d75}
+      \strng{fullhash}{27ca77940a5e8c07c5d89d0f3fb11d75}
+      \strng{bibnamehash}{27ca77940a5e8c07c5d89d0f3fb11d75}
+      \strng{authorbibnamehash}{27ca77940a5e8c07c5d89d0f3fb11d75}
+      \strng{authornamehash}{27ca77940a5e8c07c5d89d0f3fb11d75}
+      \strng{authorfullhash}{27ca77940a5e8c07c5d89d0f3fb11d75}
+      \field{sortinit}{M}
+      \field{sortinithash}{cfd219b90152c06204fab207bc6c7cab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Python for Data Analysis: Data wrangling with Pandas, NumPy, and IPython}
+      \field{year}{2017}
+    \endentry
+    \entry{ramalho2015fluent}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=d7e8ac081aed8c7a08c6c80f109b0a54}{%
+           family={Ramalho},
+           familyi={R\bibinitperiod},
+           given={Luciano},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly Media}%
+      }
+      \strng{namehash}{d7e8ac081aed8c7a08c6c80f109b0a54}
+      \strng{fullhash}{d7e8ac081aed8c7a08c6c80f109b0a54}
+      \strng{bibnamehash}{d7e8ac081aed8c7a08c6c80f109b0a54}
+      \strng{authorbibnamehash}{d7e8ac081aed8c7a08c6c80f109b0a54}
+      \strng{authornamehash}{d7e8ac081aed8c7a08c6c80f109b0a54}
+      \strng{authorfullhash}{d7e8ac081aed8c7a08c6c80f109b0a54}
+      \field{sortinit}{R}
+      \field{sortinithash}{da6b42bd3ab22fee61abed031ee405f7}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Fluent Python: Clear, concise, and effective programming}
+      \field{year}{2015}
+    \endentry
+    \entry{reitz2016hitchhiker}{book}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=1fc021f4fa3dc375d965f38b8ae5fe06}{%
+           family={Reitz},
+           familyi={R\bibinitperiod},
+           given={Kenneth},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=16a69dbef48a3c3e89fe03627bb764b2}{%
+           family={Schlusser},
+           familyi={S\bibinitperiod},
+           given={Tanya},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly Media}%
+      }
+      \strng{namehash}{f09e63fa1300aca0a7620200644caedf}
+      \strng{fullhash}{f09e63fa1300aca0a7620200644caedf}
+      \strng{bibnamehash}{f09e63fa1300aca0a7620200644caedf}
+      \strng{authorbibnamehash}{f09e63fa1300aca0a7620200644caedf}
+      \strng{authornamehash}{f09e63fa1300aca0a7620200644caedf}
+      \strng{authorfullhash}{f09e63fa1300aca0a7620200644caedf}
+      \field{sortinit}{R}
+      \field{sortinithash}{da6b42bd3ab22fee61abed031ee405f7}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Hitchhiker's guide to Python: best practices for development}
+      \field{year}{2016}
+    \endentry
+    \entry{rougier2021scientific}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=d232904247bde1b22691cc778710801b}{%
+           family={Rougier},
+           familyi={R\bibinitperiod},
+           given={Nicolas},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d232904247bde1b22691cc778710801b}
+      \strng{fullhash}{d232904247bde1b22691cc778710801b}
+      \strng{bibnamehash}{d232904247bde1b22691cc778710801b}
+      \strng{authorbibnamehash}{d232904247bde1b22691cc778710801b}
+      \strng{authornamehash}{d232904247bde1b22691cc778710801b}
+      \strng{authorfullhash}{d232904247bde1b22691cc778710801b}
+      \field{sortinit}{R}
+      \field{sortinithash}{da6b42bd3ab22fee61abed031ee405f7}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Scientific Visualization: Python+ Matplotlib}
+      \field{year}{2021}
+    \endentry
+    \entry{vanderplas2016whirlwind}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=0fd9a0e34f1b2adda41357c948d14986}{%
+           family={VanderPlas},
+           familyi={V\bibinitperiod},
+           given={Jake},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly Media}%
+      }
+      \strng{namehash}{0fd9a0e34f1b2adda41357c948d14986}
+      \strng{fullhash}{0fd9a0e34f1b2adda41357c948d14986}
+      \strng{bibnamehash}{0fd9a0e34f1b2adda41357c948d14986}
+      \strng{authorbibnamehash}{0fd9a0e34f1b2adda41357c948d14986}
+      \strng{authornamehash}{0fd9a0e34f1b2adda41357c948d14986}
+      \strng{authorfullhash}{0fd9a0e34f1b2adda41357c948d14986}
+      \field{sortinit}{V}
+      \field{sortinithash}{75dd7385c90b2252c3ae853a80ca853b}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{A Whirlwind Tour of Python}
+      \field{year}{2016}
+    \endentry
+    \entry{vanderplas2016python}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=0fd9a0e34f1b2adda41357c948d14986}{%
+           family={VanderPlas},
+           familyi={V\bibinitperiod},
+           given={Jake},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly Media}%
+      }
+      \strng{namehash}{0fd9a0e34f1b2adda41357c948d14986}
+      \strng{fullhash}{0fd9a0e34f1b2adda41357c948d14986}
+      \strng{bibnamehash}{0fd9a0e34f1b2adda41357c948d14986}
+      \strng{authorbibnamehash}{0fd9a0e34f1b2adda41357c948d14986}
+      \strng{authornamehash}{0fd9a0e34f1b2adda41357c948d14986}
+      \strng{authorfullhash}{0fd9a0e34f1b2adda41357c948d14986}
+      \field{sortinit}{V}
+      \field{sortinithash}{75dd7385c90b2252c3ae853a80ca853b}
+      \field{extradate}{2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Python data science handbook: Essential tools for working with data}
+      \field{year}{2016}
+    \endentry
+    \entry{zumstein2021}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=34d21132fd1ab075b647dfc02cb11dfa}{%
+           family={Zumstein},
+           familyi={Z\bibinitperiod},
+           given={Felix},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly Media}%
+      }
+      \strng{namehash}{34d21132fd1ab075b647dfc02cb11dfa}
+      \strng{fullhash}{34d21132fd1ab075b647dfc02cb11dfa}
+      \strng{bibnamehash}{34d21132fd1ab075b647dfc02cb11dfa}
+      \strng{authorbibnamehash}{34d21132fd1ab075b647dfc02cb11dfa}
+      \strng{authornamehash}{34d21132fd1ab075b647dfc02cb11dfa}
+      \strng{authorfullhash}{34d21132fd1ab075b647dfc02cb11dfa}
+      \field{sortinit}{Z}
+      \field{sortinithash}{156173bd08b075d7295bc3e0f4735a04}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Python for Excel}
+      \field{year}{2021}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

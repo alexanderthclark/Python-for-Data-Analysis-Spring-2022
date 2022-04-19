@@ -1,0 +1,238 @@
+%\section{Time Series and Datetime}
+
+\noindent \scalebox{0.8}{\textit{Additional reference: \cite{vanderplas2016python} Chapter 3}}
+
+
+Up to now, we've only encountered dates as strings like \code{independence_day = '1776-07-04'}. This is limited. For example, there are no string operations to add and subtract days. To that end, it is helpful to have new classes for date objects and ways to manipulate those dates, times, and datetimes. The built-in \code{datetime} and \code{dateutil} modules are useful for that. These will only support times since 1 AD. This might disappoint astronomers or anyone else wanting to extend their analysis to years BC. If that's you, you'll have to study the AstroPy \link{https://docs.astropy.org/en/stable/api/astropy.time.Time.html}{Time class}.
+
+\section{Using the \texttt{datetime} module}
+
+The standard import is \code{import datetime as dt}. 
+
+\subsection{Dates and Datetimes}
+The two main classes are \code{date} and \code{datetime}. A \code{date} object is created with \code{dt.date(year, month, day)}. \code{datetime} extends this with optional parameters for hour, minute, second, microsecond, timezone information, and \link{https://docs.python.org/3/library/datetime.html\#datetime.datetime.fold}{fold}. 
+
+\begin{lstlisting}
+last_lecture1 = dt.date(2022, 5, 2)
+last_lecture2 = dt.datetime(2022, 5, 2, 20, 10)
+
+now = dt.datetime.today() # get current date and time
+print(now) # local NYC time for me
+\end{lstlisting}
+
+You can go back to a date from a datetime with the datetime method \code{date()}. You can get a \code{time} object with the dateime method \code{time()}. 
+
+We won't cover time zones or folds. But on time zones, you should be aware that some datetimes are automatically in local time. In New York City, this comes as a -4 or -5 offset from UTC (coordinated universal time). For more with timezones, use \link{https://pypi.org/project/pytz/}{pytz}. Below is a small taste of pytz for anyone curious. 
+
+\begin{lstlisting}
+import pytz
+
+unaware = dt.datetime(2014,2,2) # time zone unaware datetime
+aware = pytz.utc.localize(unaware) # sets tzinfo to be UTC without changing the hour
+\end{lstlisting}
+
+\subsection{Unix Timestamps}
+
+Beyond strings like \code{'2022-12-25'}, you might also encounter timestamps as integers. That is, you might use \link{https://en.wikipedia.org/wiki/Unix_time}{Unix time}. This is also called POSIX time. These integers give the number of seconds elapsed since 00:00:00 UTC on 1 January 1970 (the Unix epoch). 
+
+These can be converted to datetime objects as shown below. 
+
+\begin{lstlisting}
+# UTC
+# This gives 1970, 1, 1, 0, 0
+dt.datetime.utcfromtimestamp(0)
+
+# Local Time
+# This gives 1969, 12, 31, 19, 0 (NYC)
+dt.datetime.fromtimestamp(0)
+
+# Can also use dt.date on fromtimestamp
+# This gives 1969, 12, 31 (NYC)
+dt.date.fromtimestamp(0)
+\end{lstlisting}
+
+\subsection{Time Deltas and Relative Deltas}
+
+A \code{timedelta} object is useful for dealing with a duration of time, when subtracting datetimes for example. 
+
+
+\begin{lstlisting}[language = Python]
+class_start = dt.datetime(2020,12,5,12,10,0)
+class_end = class_start + dt.timedelta(hours = 1, minutes = 50)
+
+class_duration = class_end - class_start
+
+print(class_duration)
+\end{lstlisting}
+
+The \code{seconds} attribute is different than the \code{total_seconds()} method. Can you anticipate the difference?
+\begin{lstlisting}
+delta = dt.timedelta(days = 1, seconds = 100)
+
+print(delta.seconds)
+print(delta.total_seconds())
+\end{lstlisting}
+
+But what if we just want the next month? We can't use a single timedelta that takes us from February 1st to March 1st and also from April 1st to May 1st. For this, we need a \code{relativedelta} from \code{dateutil}.
+
+\begin{lstlisting}
+from dateutil.relativedelta import relativedelta
+
+date = dt.date(2019, 12, 9)
+other_date = date + relativedelta(months = 2)
+print(other_date)
+
+# Consider how this works with leap year
+next_year1 = date + relativedelta(years = 1)
+next_year2 = date + dt.timedelta(days = 365)
+\end{lstlisting}
+
+
+
+\subsection{Date Strings}
+
+The datetime \code{strptime} method is very useful in string conversion. It works with a date string as its first argument and a \link{https://docs.python.org/3/library/datetime.html\#strftime-and-strptime-format-codes}{format} as a second argument. 
+
+For example, \code{dt.datetime.strptime('2020-01-01', '\%Y-\%m-\%d')} returns a datetime object for January 1st, 2020. 
+
+Above, the string \code{'\%Y-\%m-\%d'} is a date format code. Here are some common format codes, applied to Sunday January 30, 2000, 11:59PM, local to Louisville, Kentucky. These can all be verified with \code{pd.Timestamp(year = 2000, month = 1, day = 30, hour = 23, minute = 59, tz = 'America/Kentucky/Louisville').strftime()}.
+
+\begin{center}
+\begin{small}
+{\setlength{\tabcolsep}{2em}
+\begin{tabular}{ll}
+\toprule
+Code & Output/Example \\
+\midrule
+\code{'\%Y'} & 4-Digit Year \\
+\code{'\%m'} & Month Number \\
+\code{'\%d'} & Day of Month \\
+\code{'\%B'} & Month Name \\
+\code{'\%H'} & 24-Hour Clock Hour \\
+\code{'\%M'} & Minute \\
+\code{'\%H'} & 12-Hour Clock Hour \\
+\code{'\%p'} & AM or PM \\
+\code{'\%A'} & Day of Week \\
+\code{'\%Z'} & Timezone Name \\
+\code{'\%Y-\%m'} &   \code{'2000-01'}\\
+\code{'\%Y\/\%m/\%d'} & \code{'2000/01/30'}\\
+\code{'\%B \%y'} & \code{'January 00'}\\
+\code{'\%H:\%M \%Z'} & \code{'23:59 EST'} \\
+\code{'\%A \%I\%p'} & \code{'Sunday 11PM'}\\
+\bottomrule
+\end{tabular}}
+\end{small}
+\end{center}
+
+A more complete list of format codes can be found at \link{https://strftime.org}{strftime.org}. Codes that generate actual names, like \code{'\%A'} or \code{'\%B'}, can be made lowercase to produce an abbreviated name. Notice that these formats create zero-padded numbers like \code{'07'} instead of \code{'7'}. On Mac or Linux, padding can be eliminated with the \code{'-'} modifier, using \code{'\%-H'} or \code{'\%-m'}
+instead of \code{'\%H'} or \code{'\%m'} for example. On Windows, use \code{'#'}.
+
+
+\subsubsection{Dateutil}
+
+Dateutil offers, among other things, a details-free parser (you don't have to specify a format code).
+
+\begin{lstlisting}[language = Python]
+from dateutil import parser
+date = parser.parse("9th of December, 2019")
+print(date)
+\end{lstlisting}
+
+
+
+\subsection{Pandas and Numpy}
+Pandas offers an efficient \code{Timestamp} object and NumPy offers an efficient \code{datetime64}. For NumPy, the tradeoff is they are less flexible than datetime objects. Pandas offers something closer to the best of both worlds.
+
+Notice the accessing a NumPy array from a Series will convert datetime objects into NumPy's datetime64. 
+
+\begin{lstlisting}[language = Python]
+ser = pd.Series([dt.datetime.today()])
+date = ser.values[0]
+print(date)
+
+# date + dt.timedelta(days = 1)  # error
+\end{lstlisting}
+
+Here, we parse a date into a Pandas Timestamp and use a datetime timedelta. 
+
+\begin{lstlisting}[language = Python]
+date = pd.to_datetime("4th of July, 2015")
+print(date)
+print(type(date))
+
+date + dt.timedelta(days = 1) # Works
+\end{lstlisting}
+
+
+In pandas, we can also parse dates when reading in a CSV, using the \code{parse_dates} parameter in \code{pd.read_csv()}. A string for a single column or a list for multiple columns are both valid arguments. 
+
+\section{Analysis}
+
+\begin{lstlisting}[language = Python]
+dates = pd.date_range(start='2020-12-05', end='2021-12-05', freq='1D')
+
+df = pd.DataFrame(index = dates)
+
+df['stock_price'] = range(len(dates)) + np.random.normal(0,10,len(dates))
+plt.plot(df['date'], df['stock_price'])
+plt.show()
+
+
+## Rolling Function
+
+data = df.stock_price.rolling(30, center = True)
+data.mean().plot()
+plt.show()
+\end{lstlisting}
+
+Try it with other window sizes. 
+
+\begin{lstlisting}[language = Python]
+data = df.stock_price.rolling(365, center = True)
+data.mean().plot()
+plt.show()
+
+data = df.stock_price.rolling(100, center = True)
+data.mean().plot()
+plt.show()
+\end{lstlisting}
+
+\subsection{Application 1}
+Load the NYC taxi data and look at the distribution of ride lengths. 
+
+\begin{lstlisting}[language = Python]
+df = pd.read_csv('nyc_data.csv')
+
+df.head(1)
+\end{lstlisting}
+
+\begin{lstlisting}[language = Python]
+df['pickup_datetime'] = pd.to_datetime(df['pickup_datetime'])
+df['dropoff_datetime'] = pd.to_datetime(df['dropoff_datetime'])
+
+df['duration'] = df['dropoff_datetime'] - df['pickup_datetime']
+
+# Make histogram with logarithmic y axis
+df['duration'].dt.total_seconds().hist(log = True)
+\end{lstlisting}
+
+
+\subsection{Application 2}
+
+Load the \texttt{ATUS\_activity\_2019.csv} dataset. Create a new datetime time object column from the \texttt{TUSTARTTIM} column.
+
+\subsubsection{Method 1}
+\begin{lstlisting}[language = Python]
+import datetime
+import pandas as pd
+
+df = pd.read_csv("ATUS_activity_2019.csv")
+
+# Parse the time
+df['time_col'] = df['TUSTARTTIM'].map(lambda x: dt.datetime.strptime(x, "%H:%M:%S"))
+
+# This sets everything to a datetime object from January 1900
+# Convert to time with the time method
+
+df['time_col'] = df.time_col.map(lambda x: x.time())
+\end{lstlisting}

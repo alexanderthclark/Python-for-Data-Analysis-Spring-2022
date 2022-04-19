@@ -1,0 +1,61 @@
+
+
+\section{Dictionaries}
+\scalebox{0.8}{\textit{Reference: Gaddis Chapter 9}}
+\smallskip
+
+Dictionaries allow us to store key-value pairs. It's kind of like having one row in a table. Keys are like column names and values are the row-column cell value. Key-value pairs are created as \code{key: value}, then separated by commas and wrapped in curly braces, \code{\{\}}, to create a dictionary. Consider the example below.
+
+\begin{lstlisting}[language = Python]
+workout = {'user': 'Velma', 'fitness_discipline': 'cycling', 'instructor': 'Matt Wilpers'}
+\end{lstlisting}
+
+A specific value is access by indexing the dictionary by the key. 
+
+\begin{lstlisting}[language = Python]
+print(workout['user'])
+\end{lstlisting}
+
+\smallskip
+We can add new key-value pairs by assigning the value to the dictionary at that key. 
+
+\begin{lstlisting}[language = Python]
+# Build a dictionary from scratch
+journal = dict() # creates an empty dictionary, can also use {}
+
+journal['2020-10-03'] = "Today I learned a lot of Python. It was buckets of fun."
+\end{lstlisting}
+
+\smallskip
+\noindent The \code{in} operator works on dictionaries by searching the keys. 
+
+\begin{lstlisting}[language = Python]
+# Help translate bad journalism
+media_translator = {'is caused by': 'is correlated with'}
+
+print('is caused by' in media_translator)
+print('is correlated with' in media_translator)
+\end{lstlisting}
+
+
+You can access the keys with the \code{.keys()} operator and values with the \code{.values()} operator. So \code{x in some_dict} is actually a shorthand for \code{x in some_dict.keys()}.
+
+\smallskip
+
+\noindent Dictionary keys must be immutable. Tuples are fine. 
+
+\begin{lstlisting}[language = Python]
+# Economist Santa
+
+gifts = {} # could also use dict() here 
+
+for child in ['Anna', 'Boris']:
+    for year in [2020, 2021]:
+        
+        key = child, year # this is a tuple just like (child, year)
+        
+        gifts[key] = 'money'
+        
+print(gifts)
+\end{lstlisting}
+

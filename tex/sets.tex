@@ -1,0 +1,58 @@
+
+\section{Sets}
+\scalebox{0.8}{\textit{Reference: Gaddis Chapter 9}}
+\smallskip
+
+I find sets to be underrated. They give flexibility in analysis because they allow for quick intersections and unions (e.g. find and analyze users who did this \emph{and/or} that).
+
+\smallskip
+\noindent Sets are unordered and duplicates are ignored. We construct them like lists, but use \code{\{\}} instead of \code{[]}. Note that to create an empty set, you should use \code{set()} because \code{\{\}} creates an empty dictionary. 
+
+
+\smallskip
+\noindent Being unordered means it is true that \code{\{1,2\} == \{2,1\}}.
+
+
+\smallskip
+\noindent It's not exactly right to say that sets \emph{can't} have duplicates. You can create a set with duplicate elements and no error will be thrown. But those duplicates are ignored so that the created set object will not in fact have any duplicates. Thus, it is true that \code{\{1,2\} == \{2,1,1,2\}}.
+
+
+\bigskip Three important methods are \code{.union()}, \code{.intersection()}, and \code{.difference()}. Each of these acts on a set and requires another set as an argument. Intersection and union work like the set operations $\cap$ and $\cup$. The difference method performs set subtraction, $\setminus$. Recall that set subtraction is not commutative; $A\setminus B \neq B\setminus A$ unless $A = B$. 
+
+\begin{lstlisting}[language = Python]
+# Union and Intersection
+
+primes = {2,3,5}
+evens = {2,4,6}
+
+even_and_prime = primes.intersection(evens)
+
+even_or_prime = primes.union(evens)
+
+for set_ in even_and_prime, even_or_prime: # note we're iterating over a tuple
+    print(set_)
+    
+# Set Subtraction
+
+contiguous_USA = {'New York', 'Kentucky', 'Wisconsin', 'California'} # among other states
+
+tectonic_seceder = {'California'}
+
+
+print(contiguous_USA.difference(tectonic_seceder))
+
+# We can also use the - operator
+print(contiguous_USA - tectonic_seceder)
+
+## More Subtraction 
+
+cold_places = {'Wisconsin', 'Yukon'}
+
+print(contiguous_USA.difference(cold_places))
+
+# Reverse the arguments
+print(cold_places.difference(contiguous_USA))
+\end{lstlisting}
+
+
+

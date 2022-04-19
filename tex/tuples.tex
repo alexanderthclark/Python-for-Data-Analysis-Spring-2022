@@ -1,0 +1,88 @@
+\section{Tuples}
+\scalebox{0.8}{\textit{Reference: \cite{lubanovic2019introducing} Chapter 7}}
+
+A \emph{tuple} is a lot like a list. Whereas lists used square brackets (\code{[]}), a tuple uses parentheses, (\code{()}). Like lists, we can index and slice a tuple. The main difference is that tuples are immutable. We cannot reassign the element at a particular index. 
+
+\begin{lstlisting}[language = Python]
+example_list = ['bike','treadmill']
+example_tuple = ('bike','treadmill')
+
+example_list[1] = 'treadmill'
+example_tuple[1] = 'spacecraft' # This will throw an error\end{lstlisting}
+
+Note we can convert lists and tuples, similar to the way we could convert floats and strings (\code{int("1"), str(1)}).
+
+\begin{lstlisting}[language = Python]
+example_list = ['bike','treadmill']
+example_tuple = ('bike','treadmill')
+
+print(list(example_tuple))
+print(tuple(example_list)) \end{lstlisting}
+
+
+It might be hard to see immutability as an advantage, but this does make tuples to be safer objects. You won't accidentally screw them up (unless at the very beginning). There is another more definite advantage to tuples. They are processed faster. Processing speed will not be a practical concern in this class, but it could be a concern in your professional career. 
+
+
+\subsection{Tuple Assignment}
+
+Tuples can also be created without parentheses. 
+
+\begin{lstlisting}
+friends = 'Big Bird', 'Snuffleupagus'
+\end{lstlisting}
+
+Or you can we can create individual variable names with something like the following. 
+
+\begin{lstlisting}
+main, sidekick = 'Mitt', 'Paul'
+\end{lstlisting}
+
+\noindent This is kind of nice and or tricky when thinking about reassigning variables. Compare the following.
+
+\begin{lstlisting}
+apples = 10
+pies_possible = 2
+
+apples, pies_possible = 2*apples, apples/5
+print(apples, pies_possible)
+
+apples = 10
+pies_possible = 2
+
+apples *= 2
+pies_possible = apples/5
+print(apples, pies_possible)
+\end{lstlisting}
+
+\subsection{Unpacking}
+
+Tuples can be \emph{unpacked} with an asterisk, \code{*}, to create a starred expression. This is useful when the tuple structure isn't wanted, like when you don't want nested tuples. 
+
+For example, let's start with a tuple, \code{friends = 'Antonin', 'Ruth'}. We might want to add these to a larger tuple. Let's try: 
+
+\begin{lstlisting}
+former_justices = 'Breyer', friends
+\end{lstlisting}
+
+This results in a nested tuple \code{('Breyer', ('Antonin', 'Ruth'))}. We should unpack \code{friends}.
+
+\begin{lstlisting}
+former_justices = 'Breyer', *friends
+\end{lstlisting}
+
+Now we have a flat tuple \code{('Breyer', 'Antonin', 'Ruth')}. This would also work if friends where a list. That is, we get the same value for \code{former_justices} if we instead ran \code{former_justices = 'Breyer', *list(friends)}.
+
+Next, unpacking can be useful in use with functions when you'd like each element of the tuple to be processed as a new positional argument.
+
+\begin{lstlisting}
+def heart(a,b):
+    return a + " <3 " + b
+# heart(friends) returns an error
+print( heart(*friends) )
+\end{lstlisting}
+
+\subsection{Tuples vs. Lists}
+
+Recall the primary difference between lists and tuples: lists are mutable and tuples are not. It might be hard to see immutability as an advantage, but this does make tuples to be safer objects. You won't accidentally screw them up (unless at the very beginning).
+
+There is one definite advantage to tuples. They are processed faster. Processing speed will not be a practical concern in this class, but it could be a concern in your professional career. 

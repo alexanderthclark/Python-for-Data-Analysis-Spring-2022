@@ -1,0 +1,174 @@
+\noindent \scalebox{1}{\textit{Reference: Lubanovic Chapter 4}}
+
+Decision structures allow a program to have more than one path of execution. The path depends on condition.
+The condition is either True or False, and so can be represented by a Boolean variable.
+
+\section{If Statements}
+
+Here's a joke. A programmer is going to the grocery store and his partner says, ``Buy a gallon of milk, and if there are eggs, buy a dozen.''
+The programmer comes home with 13 gallons of milk.
+
+\smallskip
+\noindent Or consider the logical inference if you ask, ``Is it raining?'' and get a reply, ``Not hard.''
+
+
+\begin{lstlisting}[language = Python]
+if 2 + 2 > 4:
+    print("Pigs can fly.")
+    
+if 2 + 2 == 4:
+    print("Pigs cannot fly.")
+    
+if 'a' < 'b':
+    print("It is true that 'a' is less than 'b'.")
+    
+if 'a' < 'A':
+    print("It is true that 'a' is less than 'A'.")
+    
+if 'goon' == 'Goblin':
+    print("A goon is a goblin.") \end{lstlisting}
+    
+%https://genius.com/annotations/2257/standalone_embed
+
+If statements like the above rely on \emph{relational operators} (see Table 3-1 Gaddis p.112).
+
+\begin{lstlisting}[language = Python]
+if 2 == 2.:
+    print("The integer and the float are equal.")
+    
+if 2 is 2.:
+    print("The integer and the float are the same object in memory.") \end{lstlisting}
+
+\section{If Elif Else Statements}
+
+The natural counterpart to \code{if} is \code{else}. The code under \code{else} simply executes when the if condition is not satisfied. We also have \code{elif} (or else if) to help in the intermediate case, where we want another block of code to be run when the if condition is not satisified \emph{and} some other condition is satisfied.
+
+Compare this program with a simpler version using else if conditions. 
+\begin{lstlisting}
+x = 1
+if x == 0:
+    print("zero")
+else:
+    if x < 0:
+        print("negative")
+        else:
+            print("positive")
+\end{lstlisting}
+
+
+\begin{lstlisting}
+x = 1
+if x == 0:
+    print("zero")
+elif x < 0:
+    print('negative')
+else:
+    print('positive')
+\end{lstlisting}
+
+
+
+Compare the output from the following programs.
+
+\begin{lstlisting}[language = Python]
+num = 0
+
+if num < 1:
+    print(num)
+    num = num + 2
+if num > 0:
+    print(num, '!')
+    num = num - 1000
+if True:
+    print(num, '?') \end{lstlisting}
+
+
+\begin{lstlisting}[language = Python]
+num = 0
+
+if num < 1:
+    print(num)
+    num = num + 2
+elif num > 0:
+    print(num, '!')
+    num = num - 1000
+else:
+    print(num, '?') \end{lstlisting}
+
+
+\section{Logical Operators}
+
+Suppose you want to execute some code if a number $x$ is between 10 and 20. You could use \emph{nested} if statements.
+\begin{lstlisting}[language = Python]
+x = 14
+if x >= 10:
+    if x <= 20:
+        print("x is between 10 and 20.") \end{lstlisting}
+        
+
+\smallskip
+\noindent But you might prefer to base your if statement off of one compound Boolean expression. For these, we need logical operations. They are
+
+\begin{itemize}
+
+\item Logical \textit{and}: \code{and} (\code{&} for bitwise)
+\item Logical \textit{or}: \code{or} (\code{|} for bitwise)
+\item Logical \textit{negation}: \code{not} (\code{\~} bitwise)
+\end{itemize}
+\smallskip
+
+\noindent Observe the following will give equivalent output.
+
+\begin{lstlisting}[language = Python]
+not 1 > 2
+not (1 > 2)
+not(1 > 2) \end{lstlisting}
+
+
+\smallskip
+
+\noindent \textbf{Challenge: } What do you expect from \lstinline[language = Python]{not not (1 or False)}?
+        
+The usefulness of these logical operators is in chaining together several boolean expressions, reducing them to one. 
+
+Consider the following three blocks of code, which do the same thing. 
+
+\begin{lstlisting}
+if x >= 10:
+    if x <= 10:
+        print("it's 10!")
+\end{lstlisting}
+
+\begin{lstlisting}
+if (x >= 10) and (x <= 10):
+    print("it's 10!")
+\end{lstlisting}
+
+\begin{lstlisting}
+if 10 <= x <= 10:
+    print("it's 10!")
+\end{lstlisting}
+
+The latter two eliminate the need for nesting if statements. This helps readability. As the \link{https://www.python.org/dev/peps/pep-0020/}{Zen of Python} says, ``flat is better than nested.''
+
+
+\section{Boolean Variables}
+
+Finally, a Boolean variable simply references a logical True or False.
+
+\begin{lstlisting}[language = Python]
+# Option Value
+market_value = 10
+strike_price = 9
+option_has_value = market_value > strike_price
+
+if option_has_value:
+    print("We're in the money.")
+    
+# Check data type
+print(type(option_has_value)
+print(type(False))) \end{lstlisting}
+
+
+Note the above program could be shortened. We could accomplish the same thing in fewer lines and with fewer characters. We could cut out the variable \code{option_has_value} and place the logical condition it represent directly in the if statement. If you're playing \link{https://en.wikipedia.org/wiki/Code_golf}{code golf}, this is a good idea. But there's a reason code golf is described as ``recreational'' programming. It's a fun challenge, but it's a concept independent of readable code. Define extra variables to simplify your own programs and make them more readable!
+

@@ -1,0 +1,114 @@
+\BOOKMARK [0][-]{chapter*.2}{Preface}{}% 1
+\BOOKMARK [-1][-]{part.1}{I Programming}{}% 2
+\BOOKMARK [0][-]{chapter.1}{Input, Processing, and Output}{part.1}% 3
+\BOOKMARK [1][-]{section.1.1}{The Hello World Program}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.2}{Variables}{chapter.1}% 5
+\BOOKMARK [1][-]{section.1.3}{Comments}{chapter.1}% 6
+\BOOKMARK [1][-]{section.1.4}{Data Types and Conversion}{chapter.1}% 7
+\BOOKMARK [1][-]{section.1.5}{Input}{chapter.1}% 8
+\BOOKMARK [1][-]{section.1.6}{Calculations}{chapter.1}% 9
+\BOOKMARK [0][-]{chapter.2}{If, Elif, Else}{part.1}% 10
+\BOOKMARK [1][-]{section.2.1}{If Statements}{chapter.2}% 11
+\BOOKMARK [1][-]{section.2.2}{If Elif Else Statements}{chapter.2}% 12
+\BOOKMARK [1][-]{section.2.3}{Logical Operators}{chapter.2}% 13
+\BOOKMARK [1][-]{section.2.4}{Boolean Variables}{chapter.2}% 14
+\BOOKMARK [0][-]{chapter.3}{Lists}{part.1}% 15
+\BOOKMARK [1][-]{section.3.1}{Defining Lists}{chapter.3}% 16
+\BOOKMARK [2][-]{subsection.3.1.1}{Indexing, Slicing, Mutating}{section.3.1}% 17
+\BOOKMARK [0][-]{chapter.4}{Repetition Structures}{part.1}% 18
+\BOOKMARK [1][-]{section.4.1}{While Loops}{chapter.4}% 19
+\BOOKMARK [1][-]{section.4.2}{For Loops}{chapter.4}% 20
+\BOOKMARK [2][-]{subsection.4.2.1}{Nested Loops}{section.4.2}% 21
+\BOOKMARK [0][-]{chapter.5}{Functions}{part.1}% 22
+\BOOKMARK [1][-]{section.5.1}{Detour: Callables and Functions}{chapter.5}% 23
+\BOOKMARK [1][-]{section.5.2}{Function Basics}{chapter.5}% 24
+\BOOKMARK [2][-]{subsection.5.2.1}{Naming}{section.5.2}% 25
+\BOOKMARK [1][-]{section.5.3}{Arguments and Parameters}{chapter.5}% 26
+\BOOKMARK [2][-]{subsection.5.3.1}{A mutability gotcha}{section.5.3}% 27
+\BOOKMARK [1][-]{section.5.4}{Annotation and Documentation}{chapter.5}% 28
+\BOOKMARK [1][-]{section.5.5}{Local and Global Variables and Namespaces}{chapter.5}% 29
+\BOOKMARK [1][-]{section.5.6}{Anonymous Functions}{chapter.5}% 30
+\BOOKMARK [1][-]{section.5.7}{Higher-Order Functions Like map}{chapter.5}% 31
+\BOOKMARK [1][-]{section.5.8}{Examples}{chapter.5}% 32
+\BOOKMARK [2][-]{subsection.5.8.1}{Exercise!}{section.5.8}% 33
+\BOOKMARK [0][-]{chapter.6}{Exceptions}{part.1}% 34
+\BOOKMARK [1][-]{section.6.1}{Exceptions}{chapter.6}% 35
+\BOOKMARK [0][-]{chapter.7}{More Data Structures}{part.1}% 36
+\BOOKMARK [1][-]{section.7.1}{Tuples}{chapter.7}% 37
+\BOOKMARK [2][-]{subsection.7.1.1}{Tuple Assignment}{section.7.1}% 38
+\BOOKMARK [2][-]{subsection.7.1.2}{Unpacking}{section.7.1}% 39
+\BOOKMARK [2][-]{subsection.7.1.3}{Tuples vs. Lists}{section.7.1}% 40
+\BOOKMARK [1][-]{section.7.2}{The [language = Python]in Operator}{chapter.7}% 41
+\BOOKMARK [1][-]{section.7.3}{List Methods}{chapter.7}% 42
+\BOOKMARK [1][-]{section.7.4}{Strings}{chapter.7}% 43
+\BOOKMARK [1][-]{section.7.5}{Dictionaries}{chapter.7}% 44
+\BOOKMARK [1][-]{section.7.6}{Sets}{chapter.7}% 45
+\BOOKMARK [0][-]{chapter.8}{Modules}{part.1}% 46
+\BOOKMARK [1][-]{subsection.8.0.1}{Storing Functions in Modules}{chapter.8}% 47
+\BOOKMARK [2][-]{subsection.8.0.2}{Using the random module and matplotlib}{subsection.8.0.1}% 48
+\BOOKMARK [0][-]{chapter.9}{Object Oriented Programming}{part.1}% 49
+\BOOKMARK [1][-]{section.9.1}{Object Oriented Programming}{chapter.9}% 50
+\BOOKMARK [2][-]{subsection.9.1.1}{Classes}{section.9.1}% 51
+\BOOKMARK [1][-]{section.9.2}{Inheritance}{chapter.9}% 52
+\BOOKMARK [2][-]{subsection.9.2.1}{Polymorphism \(G\24711.2\)}{section.9.2}% 53
+\BOOKMARK [0][-]{chapter.10}{IPython}{part.1}% 54
+\BOOKMARK [1][-]{section.10.1}{IPython and Jupyter}{chapter.10}% 55
+\BOOKMARK [2][-]{subsection.10.1.1}{IPython Basics}{section.10.1}% 56
+\BOOKMARK [2][-]{subsection.10.1.2}{Extensions}{section.10.1}% 57
+\BOOKMARK [2][-]{subsection.10.1.3}{Peak Under the Hood: Grading}{section.10.1}% 58
+\BOOKMARK [-1][-]{part.2}{II Data}{}% 59
+\BOOKMARK [0][-]{chapter.11}{NumPy}{part.2}% 60
+\BOOKMARK [1][-]{section.11.1}{The Array}{chapter.11}% 61
+\BOOKMARK [1][-]{section.11.2}{Indexing}{chapter.11}% 62
+\BOOKMARK [2][-]{subsection.11.2.1}{Functions}{section.11.2}% 63
+\BOOKMARK [2][-]{subsection.11.2.2}{Linear Algebra}{section.11.2}% 64
+\BOOKMARK [0][-]{chapter.12}{Pandas: Series and DataFrames}{part.2}% 65
+\BOOKMARK [1][-]{section.12.1}{Series}{chapter.12}% 66
+\BOOKMARK [2][-]{subsection.12.1.1}{Series Functionality I}{section.12.1}% 67
+\BOOKMARK [1][-]{section.12.2}{DataFrames}{chapter.12}% 68
+\BOOKMARK [2][-]{subsection.12.2.1}{Indexing}{section.12.2}% 69
+\BOOKMARK [1][-]{section.12.3}{Summarizing and Computing Descriptive Stats}{chapter.12}% 70
+\BOOKMARK [1][-]{section.12.4}{Applications}{chapter.12}% 71
+\BOOKMARK [2][-]{subsection.12.4.1}{Interview Question}{section.12.4}% 72
+\BOOKMARK [0][-]{chapter.13}{Pandas: Join, Merge, and Other Manipulation}{part.2}% 73
+\BOOKMARK [1][-]{section.13.1}{Application: Primitive Pandas}{chapter.13}% 74
+\BOOKMARK [1][-]{section.13.2}{The Basic Join}{chapter.13}% 75
+\BOOKMARK [1][-]{section.13.3}{Data Aggregation and Group Operations}{chapter.13}% 76
+\BOOKMARK [2][-]{subsection.13.3.1}{GroupBy}{section.13.3}% 77
+\BOOKMARK [1][-]{section.13.4}{Concat and Append}{chapter.13}% 78
+\BOOKMARK [2][-]{subsection.13.4.1}{Application: What precedes sleeplessness?}{section.13.4}% 79
+\BOOKMARK [1][-]{section.13.5}{Merge}{chapter.13}% 80
+\BOOKMARK [1][-]{section.13.6}{Pivot Tables}{chapter.13}% 81
+\BOOKMARK [2][-]{subsection.13.6.1}{Crosstabs}{section.13.6}% 82
+\BOOKMARK [0][-]{chapter.14}{Data Visualization}{part.2}% 83
+\BOOKMARK [1][-]{section.14.1}{MATLAB Interface}{chapter.14}% 84
+\BOOKMARK [2][-]{subsection.14.1.1}{Saving Figures}{section.14.1}% 85
+\BOOKMARK [2][-]{subsection.14.1.2}{Special Plots: Scatter, Histogram, and Bar Plots}{section.14.1}% 86
+\BOOKMARK [2][-]{subsection.14.1.3}{Customizations}{section.14.1}% 87
+\BOOKMARK [2][-]{subsection.14.1.4}{Pandas Integration}{section.14.1}% 88
+\BOOKMARK [1][-]{section.14.2}{Object-oriented Interface}{chapter.14}% 89
+\BOOKMARK [2][-]{subsection.14.2.1}{Introduction to the OO Interface}{section.14.2}% 90
+\BOOKMARK [2][-]{subsection.14.2.2}{Subplots with [language = Python]plt.subplots\(\)}{section.14.2}% 91
+\BOOKMARK [0][-]{chapter.15}{Time and Dates}{part.2}% 92
+\BOOKMARK [1][-]{section.15.1}{Using the datetime module}{chapter.15}% 93
+\BOOKMARK [2][-]{subsection.15.1.1}{Dates and Datetimes}{section.15.1}% 94
+\BOOKMARK [2][-]{subsection.15.1.2}{Unix Timestamps}{section.15.1}% 95
+\BOOKMARK [2][-]{subsection.15.1.3}{Time Deltas and Relative Deltas}{section.15.1}% 96
+\BOOKMARK [2][-]{subsection.15.1.4}{Date Strings}{section.15.1}% 97
+\BOOKMARK [2][-]{subsection.15.1.5}{Pandas and Numpy}{section.15.1}% 98
+\BOOKMARK [1][-]{section.15.2}{Analysis}{chapter.15}% 99
+\BOOKMARK [2][-]{subsection.15.2.1}{Application 1}{section.15.2}% 100
+\BOOKMARK [2][-]{subsection.15.2.2}{Application 2}{section.15.2}% 101
+\BOOKMARK [0][-]{chapter.16}{Python for Excel}{part.2}% 102
+\BOOKMARK [1][-]{section.16.1}{Pandas}{chapter.16}% 103
+\BOOKMARK [2][-]{subsection.16.1.1}{Reading}{section.16.1}% 104
+\BOOKMARK [2][-]{subsection.16.1.2}{Writing}{section.16.1}% 105
+\BOOKMARK [1][-]{section.16.2}{OpenPyXL}{chapter.16}% 106
+\BOOKMARK [2][-]{subsection.16.2.1}{Reading}{section.16.2}% 107
+\BOOKMARK [2][-]{subsection.16.2.2}{Writing}{section.16.2}% 108
+\BOOKMARK [2][-]{subsection.16.2.3}{Styles}{section.16.2}% 109
+\BOOKMARK [2][-]{subsection.16.2.4}{Inserting Charts}{section.16.2}% 110
+\BOOKMARK [0][-]{chapter.17}{Applications}{part.2}% 111
+\BOOKMARK [1][-]{section.17.1}{Inference and Experiments}{chapter.17}% 112
+\BOOKMARK [2][-]{subsection.17.1.1}{Motivation/Soapbox}{section.17.1}% 113
+\BOOKMARK [2][-]{subsection.17.1.2}{Experiments}{section.17.1}% 114

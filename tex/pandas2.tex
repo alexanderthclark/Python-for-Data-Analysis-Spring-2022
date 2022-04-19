@@ -1,0 +1,344 @@
+%\section{Plotting 1.0}
+%\scalebox{0.8}{\textit{Reference: McKinney Chapter 9}}
+\scalebox{0.8}{\textit{Reference: \cite{vanderplas2016python}}}
+
+
+\section{Application: Primitive Pandas}
+
+This section doesn't exactly match anything in the book. We'll apply some of what we learned previously and consider some old-fashioned ways to loop through a DataFrame.
+
+Consider the \texttt{rock\_paper\_scissors.csv} dataset. Load it using \code{pd.read_csv}. Each row represents a unique person and their strategy in a game of Rock, Paper, Scissors, where a strategy is just the chance they select either rock, paper, or scissors.
+
+Let's verify that the probabilities sum to one. 
+
+\begin{enumerate}
+    \item Do this with a for loop.
+    \item Do this with the \code{sum} method.
+\end{enumerate}
+
+
+Let's look for individuals who have very uneven strategies, in the sense that they lean toward any of the three actions with a chance greater than 0.5.
+
+\begin{enumerate}
+    \item Do this with a for loop.
+    \item Do this with the \code{max} method.
+\end{enumerate}
+
+
+Create three new columns that are agnostic of the specific rock, paper, or scissors actions and instead give the highest share, the second highest share, and the lowest share. 
+
+\section{The Basic Join}
+
+We will cover merges and joins more in depth in the future, but for now let's consider the special case of joining two DataFrames. 
+
+DataFrames have a \emph{join} instance for merging by the index. This requires similar indices and non-overlapping columns.
+
+\begin{lstlisting}[language = Python]
+ser1 = pd.Series({'Alice':0.3, 'Bob':0.6})
+ser2 = pd.Series({'Alice':0.7})
+
+df1 = pd.DataFrame(ser1)
+df2 = pd.DataFrame(ser2)
+
+# This will fail
+#joined = df1.join(df2)
+
+# Rename columns
+df1.columns = ['Rock']
+df2.columns = ['Other']
+
+joined = df1.join(df2)
+joined2 = df1.join(df2, how = 'outer')
+
+# examine 
+joined1 = df1.join(df2)
+joined2 = df2.join(df1)
+joined3 = df2.join(df1, how = 'outer')
+
+print(joined1)
+print(joined2)
+print(joined3)
+
+print(joined3.dropna())
+\end{lstlisting}
+
+
+
+\section{Data Aggregation and Group Operations}
+
+\subsection{GroupBy}
+The \code{groupby} method is fundamental to many data summary tasks. Load \code{purchase_transactions.csv}.
+\footnote{This is a randomly generated dataset that came from the \link{https://lifetimes.readthedocs.io/en/latest/index.html}{lifetimes} package and then I added extra columns. While more familiar topics might be easier, I would recommend this as a presentation subject for anyone interested in lifetime value calculations.} This dataset contains a row for each transaction, with \code{id} identifying the customer and \code{item} and \code{spent} giving the purchased item and spent giving the amount spent (corresponding to a quantity). 
+
+It'd be natural for us summarize this data by the individual customer. This requires creating a \emph{GroupBy} object using the \code{groupby} method. 
+
+\subsubsection{DataFrame Group By Object}
+
+\begin{lstlisting}[language = Python]
+grouped = df.groupby('id')
+grouped.mean() # try this
+\end{lstlisting}
+
+\subsubsection{Series Group By Object}
+
+\begin{lstlisting}[language = Python]
+grouped = df.groupby('id')['item']
+grouped.mean() # try this
+\end{lstlisting}
+
+
+\subsubsection{Group By With Multiple Columns}
+
+You can group across multiple dimensions by passing a list into the groupby method. 
+
+\begin{lstlisting}[language = Python]
+grouped2 = df.groupby(['id', 'item']) # DataFrame groupby object
+
+grouped_df = grouped2.mean() # Creates a DataFrame
+
+grouped_df # inspect
+\end{lstlisting}
+
+This kind of groupby creates a \emph{MultiIndex}, even if you group a series instead of the whole DataFrame. Print \code{grouped_df.index} to see the following. 
+
+\begin{lstlisting}[language = Python]
+MultiIndex([(   0,  'apple'),
+            (   1, 'butter'),
+            (   2,  'apple'),
+            (   2, 'butter'),
+            (   2, 'orange'),
+            (   2, 'turnip'),
+            (   3, 'turnip'),
+            (   4, 'orange'),
+            (   4, 'turnip'),
+            (   5,  'apple'),
+            ...
+            (4994, 'orange'),
+            (4994, 'turnip'),
+            (4995, 'orange'),
+            (4996,  'apple'),
+            (4996, 'butter'),
+            (4996, 'orange'),
+            (4996, 'turnip'),
+            (4997, 'turnip'),
+            (4998,  'apple'),
+            (4999, 'turnip')],
+           names=['id', 'item'], length=8986)
+\end{lstlisting}
+
+While the index of \code{df} was a list of integers, this is a list of tuples. A row of \code{grouped_df} is accessed with the standard loc, \code{grouped_df.loc[(0,'apple')]}.
+
+\smallskip
+\noindent MultiIndices can complicate your code. You can get rid of the MultiIndex with \code{unstack}.
+
+\begin{lstlisting}[language = Python]
+grouped_df.unstack()
+\end{lstlisting}
+
+Now, the values in the second dimension of the index become columns.
+
+
+\section{Concat and Append}
+%\scalebox{0.8}{\textit{Reference: McKinney Chapter 8}}\\
+%\noindent \scalebox{0.8}{\textit{See Also: VanderPlas %Chapter 3}}
+
+
+The simplest way to combine two datasets is by concatenating them. Appending one dataset to another can be like a SQL union. 
+
+First, there is the \code{append} method. Consider the two American Time Use Survey datasets, \code{ATUS_activity_2018.csv} and \code{ATUS_activity_2019.csv}. It might be natural to combine these datasets if we don't see an important difference between 2018 and 2019. And even if there is an important difference, that could be noted by an extra column indicating the year.
+
+With the \code{append} method\footnote{See VanderPlas Chapter 3. Unlike the list append, this does not modify the original object.}, we can simply call \code{df2018.append(df2019).} Note this returns a new DataFrame. You might assign this to a new variable if you'd like to work with the combined data.
+
+\begin{lstlisting}[language = Python]
+df1819 = df2018.append(df2019)
+
+# Compare number of rows
+print(len(df2018), len(df2019))
+print(len(df1819))
+
+# Compare number of columns
+print(len(df2018.columns), len(df2019.columns))
+print(len(df1819.columns))
+\end{lstlisting}
+
+
+There is also the pandas function \code{concat}. We can use this to concatenate Series or DataFrames. The objects to be concatenated must be passed as a sequence and there is an optional axis argument.
+
+\begin{lstlisting}[language = Python]
+# pd.concat(df2018, df2019) # Doesn't work
+
+df_a = pd.concat([df2018, df2019]) # vertical
+df_b = pd.concat([df2018, df2019], axis = 0) # vertical
+df_c = pd.concat([df2018, df2019], axis = 1) # horizontal
+\end{lstlisting}
+
+
+Print out these DataFrames and compare the shapes. Then, inspect the indices. Note that for \code{df1819}, \code{df_a}, and \code{df_b}, the index now contains duplicates. You might amend this with \code{.reset_index()}. Pandas concatenation preserves indices. You can handle this by 
+\begin{enumerate}
+    \item Catching duplicates as an error
+    \item Ignoring the Index
+    \item Adding MultiIndex keys.
+\end{enumerate}
+
+To throw an error if there are duplicates, use the argument \code{verify_integrity = True}. To ignore the index, specify \code{ignore_index = True}. Or, to create a MultiIndex, pass an argument \code{keys = [2018, 2019]} where \code{keys} could more generally be any list that gives a unique key for each input to the concatenation.
+
+Finally, there is also the \code{join} argument for \code{concat()} which can be used when the DataFrames don't share all of their columns. Use \code{join = 'inner'} to return just the common columns, and use \code{join = 'outer'} (also the default) to return all columns. 
+
+\subsection{Application: What precedes sleeplessness?}
+
+Concatenation can be useful when you want to add columns that give values from the previous row. As an analyst, you might want to compare a row event with what took place before. We can do this with the help of the \code{shift} method.
+
+\begin{lstlisting}[language = Python]
+df1819.reset_index(drop = True, inplace = True) # Clean index
+
+shift_df1819 = df1819[['TUCASEID','activity_name']].shift() # pushes every row forward by default
+shift_df1819.columns = ['prev_TUCASEID', 'prev_activity_name']
+
+df1819 = pd.concat([df1819,shift_df1819], axis = 1)
+
+df1819.head()
+\end{lstlisting}
+
+Then,
+
+\begin{lstlisting}[language = Python]
+same = df1819.TUCASEID == df1819.prev_TUCASEID
+sleepless = df1819.activity_name == 'Sleeplessness'
+sleeping = df1819.activity_name == 'Sleeping'
+\end{lstlisting}
+
+Compare \code{df1819[same & sleepless].prev_activity_name.value_counts(normalize = True)}
+and \code{df1819[same & sleeping].prev_activity_name.value_counts(normalize = True)}.
+
+
+\section{Merge}
+We previously looked at the pandas join, which merged DataFrames based on their indices. Now, we will consider merges more generally, where we can merge based on column values. 
+
+A merge can be accomplished with a \code{.merge()} method, \code{df1.merge(df2 ... )} or with the pandas merge function, \code{pd.merge(df1, df2, ...)}.
+
+First, let's consider \code{pd.merge} and let's load the 2018 ATUS data files. These DataFrames share just one column, \code{TUCASEID}.
+
+\begin{lstlisting}[language = Python]
+activity = pd.read_csv("ATUS_activity_2018.csv", index_col = 'Unnamed: 0')
+resp = pd.read_csv("ATUS_respondent_2018.csv", index_col = 'Unnamed: 0')
+
+merge1 = pd.merge(activity, resp) 
+\end{lstlisting}
+
+We didn't specify a column to merge on, so the merge is automatically done on the common column. However, it is better to specify using the \code{on} argument. This is to follow the principle of coding, ``Explicity is better than implicit.''
+
+As we could use the \code{verify_integrity} argument in concatenation, we can use a \code{validate} argument to throw an error if Python doesn't find our expected behavior in the merge. Here, we have a many-to-one merge, because a single TUCASEID appears multiple times in the left dataset, \code{activity}, and just once in the right dataset, \code{resp}.
+
+\begin{lstlisting}[language = Python]
+try:
+    pd.merge(activity, resp, on = 'TUCASEID', validate = 'many_to_one')
+except Exception as e:
+    print(e)
+    
+try:
+    pd.merge(activity, resp, on = 'TUCASEID', validate = 'one_to_many')
+except Exception as e:
+    print(e)
+
+try:
+    pd.merge(activity, resp, on = 'TUCASEID', validate = 'one_to_one')
+except Exception as e:
+    print(e)
+\end{lstlisting}
+
+Merges can also be done on multiple columns. Here we create (fake) supplemental data to be added.
+
+\begin{lstlisting}[language = Python]
+activity_supplement = activity[['TUCASEID','TUSTARTTIM']]
+activity_supplement.loc[:,'is_alone'] = np.random.choice([True, False],len(activity_supplement))
+
+# Jumble dataframe to a simple index join or concat is possible
+activity_supplement = activity_supplement.sample(len(activity_supplement)) # samples without replacement to shuffle
+activity_supplement.reset_index(drop = True, inplace = True)
+
+# Merge
+pd.merge(activity, activity_supplement, on = ['TUCASEID', 'TUSTARTTIM'], validate = 'one_to_one')
+\end{lstlisting}
+
+Datasets can also be merged on differently named columns.
+
+\begin{lstlisting}[language = Python]
+activity_supplement.columns = ['a', 'b', 'c']
+pd.merge(activity, activity_supplement, left_on = ['TUCASEID', 'TUSTARTTIM'], right_on = ['a','b'])
+\end{lstlisting}
+
+
+Finally, there are left, right, inner, and outer joins. These can be specified with \code{how}. 
+
+Consider the following
+
+\begin{lstlisting}[language = Python]
+pd.merge(activity, activity_supplement.head(), left_on = ['TUCASEID', 'TUSTARTTIM'], right_on = ['a','b'])
+\end{lstlisting}
+
+What results is a DataFrame of length. By default, pandas does an inner join.
+
+\begin{lstlisting}[language = Python]
+supplement2 = activity_supplement.head()
+supplement2.columns = ['TUCASEID', 'TUSTARTTIM', 'is_alone'] # name back
+
+# Create a TUCASEID not in the activity dataset
+supplement2.loc[0, 'TUCASEID'] = "Uncle Milton"
+
+
+df_inner = pd.merge(activity, supplement2, on = ['TUCASEID', 'TUSTARTTIM'],  how = 'inner')
+
+df_outer = pd.merge(activity, supplement2, on = ['TUCASEID', 'TUSTARTTIM'], how = 'outer')
+
+df_right = pd.merge(activity, supplement2, on = ['TUCASEID', 'TUSTARTTIM'], how = 'right')
+
+df_left = pd.merge(activity, supplement2, on = ['TUCASEID', 'TUSTARTTIM'], how = 'left')
+\end{lstlisting}
+
+Inspect each. These DataFrames are all unique!
+
+
+
+\section{Pivot Tables}
+
+\cite{vanderplas2016python} motivates pivot tables as a kind of advanced \code{GroupBy} operation. Below, we slightly modify the example on page 171.
+
+\begin{lstlisting}
+import seaborn as sns
+titanic = sns.load_dataset('titanic')
+titanic.groupby(['sex','class']).survived.mean()
+\end{lstlisting}
+
+This creates a series with a MultiIndex. You might prefer to have the same data in a table. This can be done by adding \code{.unstack()}. That is, run \code{titanic.groupby(['sex','class']).survived.mean().unstack()}. 
+
+\subsubsection{\code{pivot_table()}}
+
+\begin{lstlisting}
+# DataFrame method
+p1 = titanic.pivot_table('survived', index = 'sex', columns = 'class')
+
+# Equivalent pandas function
+p2 = pd.pivot_table(titanic, values = 'survived', index = 'sex', columns = 'class', aggfunc = np.mean)
+\end{lstlisting}
+
+\subsubsection{\code{pivot()}}
+
+
+Another method is \code{df.pivot()}. This can't handle duplicates. It doesn't do any aggregation. The data is simply reshaped.
+
+\subsection{Crosstabs}
+
+The \code{crosstab()} function simplifies a pivot with \code{aggfunc = 'count'}.
+
+
+\begin{lstlisting}
+df = pd.read_csv("purchase_transactions.csv", index_col = 'Unnamed: 0')
+
+# pivot 
+pd.pivot_table(df, index = 'id', columns = 'item', values = 'spent', 
+                                       aggfunc='count', fill_value = 0).head()
+
+# equivalent
+pd.crosstab(df1.id, df1.item)
+\end{lstlisting}
+
