@@ -2,7 +2,7 @@
 
 A \emph{module} is a file that contains Python code. Large programs are more manageable when divided into modules. Many functions in the standard Python library are stored in modules. The \code{math} and \code{random} modules are common examples. These shouldn't require additional installation to use if you've downloaded Anaconda. 
 
-To use a module, you must import the module with an import statement, \code{import math} for example. Then any function in that module can be accessed by using the function name, prefixed by the module name and a dot. To use \code{sqrt} from \code{math}, you must use \code{math.sqrt(81)}. 
+To use a module, you must import the module with an import statement, \code{import math} for example. Then any function in that module can be accessed by using the function name, prefixed by the module name and a dot. To use \code{sqrt} from \code{math}, you must use \code{math.sqrt(81)}. \link{https://peps.python.org/pep-0008/}{PEP 8} advises, ``imports are always put at the top of the file, just after any module comments and docstrings, and before module globals and constants.''
 
 You can import just a specific function with syntax like the following: \code{from math import sqrt}. Then \code{sqrt} can be accessed without the \code{math.} prefix. Running \code{from math import *} is called a wildcard import and will import every function in the module. 
 
@@ -15,7 +15,19 @@ import datetime as dt
 from math import sin as sine # Not a typical alias, but for demonstration
 \end{lstlisting}
 
-\subsection{Storing Functions in Modules}
+Note that if you import a module inside a function, it's not available globally. This is similar to how local and global variables work. 
+
+\begin{lstlisting}
+def silly_function():
+    import numpy as np
+
+silly_function()
+
+# Next line produces an error. NumPY is not imported.
+np.array([])
+\end{lstlisting}
+
+\section{Storing Functions in Modules}
 You can create your own module by placing code into a .py file. If that file is in your directory, you can access it with an import statement. In the lecture folder, I've placed a file \texttt{next\_power.py}. Download that and place it in your working directory to try importing it. In Google Colab, you can upload files in the left menu. 
 
 Try the following.
@@ -41,7 +53,7 @@ print(val)
 \noindent It's difficult to overstate how helpful this is in creating cleaner and more readable Jupyter notebooks. 
 
 
-\subsection{Using the \texttt{random} module and \texttt{matplotlib}}
+\section{Using the \texttt{random} module and \texttt{matplotlib}}
 
 Let's get our hands dirty a bit. 
 
@@ -80,3 +92,4 @@ plt.show()
 \begin{center}
     \includegraphics[width = .5\textwidth]{gamblers_ruin.png}
 \end{center}
+

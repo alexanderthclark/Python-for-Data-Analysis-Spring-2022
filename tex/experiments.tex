@@ -1,6 +1,15 @@
 \section{Inference and Experiments}
 
-In this section, we put our skills together to analyze an A/B test. We'll use pandas, NumPy, and just a bit of statsmodels and SciPy. But first, here's some motivation for why A/B tests are important and to create more student demand for the causal inference course I want to teach. 
+In this section, we put our skills together to analyze an A/B test. We'll use pandas, NumPy, and a couple new things.
+
+\begin{enumerate}
+    \item Use \code{statsmodels} for ordinary least squares.\footnote{You might notice \cite{vanderplas2016python} uses \code{sklearn} for linear regression. Both are good. \code{sklearn} is more ML oriented and \code{statsmodels} is more stats oriented. As an example of this difference, \code{sklearn} will apply regularization to a logistic regression by default and \code{statsmodels} won't.}
+    \item Use \code{scipy} for a two-sample $t$-test.
+    \item Use \code{numpy} for randomization inference/permutation tests.
+\end{enumerate}
+
+
+First, here's some motivation for why A/B tests are important and to create more student demand for the causal inference course I want to teach. 
 
 \subsection{Motivation/Soapbox}
 Any economic or behavioral model proposes to describe the Data Generating Process (DGP), or whatever is really driving the outcomes we see in our non-experimental data. That is, we want to work out if $X$ causes $Y$ or $X$ and $Y$ have a common cause and the association between them is spurious. What would you say if you (plausibly) analyzed data that showed people wearing winter hats are colder than people not wearing winter hats? This is all to say that questions of causality are fraught with issues of bias. Hence the oft-repeated directive \link{https://hbr.org/2021/11/leaders-stop-confusing-correlation-with-causation}{not to confuse correlation with causality}.

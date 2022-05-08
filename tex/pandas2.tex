@@ -276,7 +276,8 @@ Consider the following
 pd.merge(activity, activity_supplement.head(), left_on = ['TUCASEID', 'TUSTARTTIM'], right_on = ['a','b'])
 \end{lstlisting}
 
-What results is a DataFrame of length. By default, pandas does an inner join.
+What results is a DataFrame of length. By default, pandas does an inner join. Inspect each DataFrame below. These are all unique!
+
 
 \begin{lstlisting}[language = Python]
 supplement2 = activity_supplement.head()
@@ -295,8 +296,26 @@ df_right = pd.merge(activity, supplement2, on = ['TUCASEID', 'TUSTARTTIM'], how 
 df_left = pd.merge(activity, supplement2, on = ['TUCASEID', 'TUSTARTTIM'], how = 'left')
 \end{lstlisting}
 
-Inspect each. These DataFrames are all unique!
 
+
+Note that in cases where they may be no conceptual difference between a left and right merge, you might find the rows are still ordered differently so identical DataFrames are not returned. Below, see the right (left) merge creates a new DataFrame with the same order as in the right (left) DataFrame. This is also our first use of the DataFrame method \code{equals()}, which tests for the equality of all elements. 
+
+\begin{lstlisting}
+left = pd.DataFrame({'id': [1,2], 
+                     'country_name': ['USA', 'CN']})
+right = pd.DataFrame({'gold_medals': [9,8], 
+                      'id': [2,1]})
+
+left_merged = left.merge(right, on = 'id', how = 'left')
+right_merged = left.merge(right, on = 'id', how = 'right')
+
+# This returns False
+print(left_merged.equals(right_merged))
+
+# This returns True
+print(left_merged.sort_values('id').reset_index(drop = True).equals(\
+    right_merged.sort_values('id').reset_index(drop = True)))
+\end{lstlisting}
 
 
 \section{Pivot Tables}
@@ -311,7 +330,7 @@ titanic.groupby(['sex','class']).survived.mean()
 
 This creates a series with a MultiIndex. You might prefer to have the same data in a table. This can be done by adding \code{.unstack()}. That is, run \code{titanic.groupby(['sex','class']).survived.mean().unstack()}. 
 
-\subsubsection{\code{pivot_table()}}
+\subsubsection{\texttt{pivot\_table()}}
 
 \begin{lstlisting}
 # DataFrame method
@@ -321,7 +340,7 @@ p1 = titanic.pivot_table('survived', index = 'sex', columns = 'class')
 p2 = pd.pivot_table(titanic, values = 'survived', index = 'sex', columns = 'class', aggfunc = np.mean)
 \end{lstlisting}
 
-\subsubsection{\code{pivot()}}
+\subsubsection{\texttt{pivot()}}
 
 
 Another method is \code{df.pivot()}. This can't handle duplicates. It doesn't do any aggregation. The data is simply reshaped.
